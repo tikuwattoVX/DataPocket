@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * Created by masakisakamoto on 2015/04/05.
+ * ジャンル画面
  */
 public class GenreTopActivity extends ActionBarActivity {
 
