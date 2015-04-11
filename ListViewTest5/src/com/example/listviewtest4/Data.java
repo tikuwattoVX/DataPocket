@@ -41,4 +41,5 @@ public class Data {
 	public View getImage(){
 		return this.mImage;
 	}
+	// 編集テスト追加
 }
