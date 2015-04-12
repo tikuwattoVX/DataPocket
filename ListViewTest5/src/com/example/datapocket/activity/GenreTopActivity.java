@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -22,6 +23,8 @@ public class GenreTopActivity extends Activity
   
   ListView listView;
   Button addButton;
+  static List<String> dataList = new ArrayList<String>();
+  static ArrayAdapter<String> adapter;
   
   @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,16 @@ public class GenreTopActivity extends Activity
         setContentView(R.layout.activity_genre_top);
         findViews();
         setListeners();
+        setAdapters();
     }
+  
+  protected void setAdapters() {
+	  adapter = new ArrayAdapter<String>(
+			  this,
+			  android.R.layout.simple_list_item_1,
+			  dataList);
+	  listView.setAdapter(adapter);
+  }
   
   protected void findViews(){
     listView = (ListView)findViewById(R.id.listView1);
@@ -50,6 +62,7 @@ public class GenreTopActivity extends Activity
   }
     
   protected void addItem(){
+	  adapter.add("Hello!");
   }
 
 }
