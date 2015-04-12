@@ -1,13 +1,18 @@
 package com.example.datapocket.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +31,8 @@ public class GenreTopActivity extends Activity
   ListView listView;
   Button addButton;
   static List<GenreDataItem> dataList = new ArrayList<GenreDataItem>();
-  static ArrayAdapter<GenreDataItem> adapter;
+//  static ArrayAdapter<GenreDataItem> adapter;
+  static GenreAdapter adapter;
   
   @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,10 +44,11 @@ public class GenreTopActivity extends Activity
     }
   
   protected void setAdapters() {
-	  adapter = new ArrayAdapter<GenreDataItem>(
+	  /* adapter = new ArrayAdapter<GenreDataItem>(
 			  this,
 			  android.R.layout.simple_list_item_1,
-			  dataList);
+			  dataList); */
+	  adapter = new GenreAdapter();
 	  listView.setAdapter(adapter);
   }
   
@@ -64,9 +71,55 @@ public class GenreTopActivity extends Activity
   }
     
   protected void addItem(){
-	  adapter.add(new GenreDataItem(
+	  dataList.add(new GenreDataItem(
 		      "肉料理", 
-		      "肉肉しい肉料理は、主に肉です。", 
-		      "ジューシー坂本"));
+		      "肉肉しい肉料理は、主に肉です。"));
+	  adapter.notifyDataSetChanged();
+  }
+  
+  private class GenreAdapter extends BaseAdapter {
+
+	@Override
+	public int getCount() {
+		return dataList.size();
+	}
+
+	@Override
+	public Object getItem(int position) {
+		return dataList.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		return position;
+	}
+
+	@Override
+	public View getView(
+		int position,
+		View convertView,
+		ViewGroup parent) {
+		
+		TextView textView1;
+		TextView textView2;
+		View v = convertView;
+		
+		if(v==null){
+	        LayoutInflater inflater = 
+	          (LayoutInflater)
+	            getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	        v = inflater.inflate(R.layout.row_genre, null);
+	      }
+	      GenreDataItem data = (GenreDataItem)getItem(position);
+	      if(data != null){
+	        textView1 = (TextView) v.findViewById(R.id.genreTitle);
+	        textView2 = (TextView) v.findViewById(R.id.genreMessage);
+	        
+	        textView1.setText(data.getTitle());
+	        textView2.setText(data.getMsg());
+	      }
+	      return v;
+	}
+	  
   }
 }

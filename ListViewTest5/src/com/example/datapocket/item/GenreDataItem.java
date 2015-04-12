@@ -1,31 +1,28 @@
 package com.example.datapocket.item;
 
+import android.widget.ImageView;
+
 public class GenreDataItem {
 	
 	String title;
 	String msg;
-	String author;
+	ImageView image;
 	  
-	public GenreDataItem(String title, String msg, String author){
+	public GenreDataItem(String title, String msg){
 	  this.title = title;
 	  this.msg = msg;
-	  this.author = author;
 	}
 	  
 	public String getTitle(){
 	  return title;
 	}
 	  
-	public String getISBN(){
+	public String getMsg(){
 	  return msg;
 	}
 	  
-	public String getAuthor(){
-	  return author;
-	}
-	  
 	public String toString(){
-	  return title + ":" + msg + ":" + author;
+	  return title + ":" + msg;
 	}
 }
 
