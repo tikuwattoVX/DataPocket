@@ -41,6 +41,11 @@ public class GenreTopActivity extends Activity
         findViews();
         setListeners();
         setAdapters();
+        // 初回起動時はサンプルデータベースを表示する処理
+        // prefの値がtrueの場合通る
+//        if() {
+        	// 表示処理
+//        }
     }
   
   protected void setAdapters() {
