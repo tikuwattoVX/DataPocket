@@ -12,6 +12,8 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.datapocket.item.GenreDataItem;
+
 /**
  * Created by masakisakamoto on 2015/04/05.
  * ジャンル画面
@@ -23,8 +25,8 @@ public class GenreTopActivity extends Activity
   
   ListView listView;
   Button addButton;
-  static List<String> dataList = new ArrayList<String>();
-  static ArrayAdapter<String> adapter;
+  static List<GenreDataItem> dataList = new ArrayList<GenreDataItem>();
+  static ArrayAdapter<GenreDataItem> adapter;
   
   @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,7 @@ public class GenreTopActivity extends Activity
     }
   
   protected void setAdapters() {
-	  adapter = new ArrayAdapter<String>(
+	  adapter = new ArrayAdapter<GenreDataItem>(
 			  this,
 			  android.R.layout.simple_list_item_1,
 			  dataList);
@@ -62,7 +64,9 @@ public class GenreTopActivity extends Activity
   }
     
   protected void addItem(){
-	  adapter.add("Hello!");
+	  adapter.add(new GenreDataItem(
+		      "肉料理", 
+		      "肉肉しい肉料理は、主に肉です。", 
+		      "ジューシー坂本"));
   }
-
 }
