@@ -5,10 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.v7.app.ActionBar;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.Toolbar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -29,7 +33,7 @@ import com.example.datapocket.item.GenreDataItem;
  * Created by masakisakamoto on 2015/04/05.
  * ジャンル画面
  */
-public class GenreTopActivity extends Activity 
+public class GenreTopActivity extends ActionBarActivity 
     implements OnClickListener {
 
   static final String TAG = "ListViewTest";
@@ -54,8 +58,18 @@ public class GenreTopActivity extends Activity
 //        }
   }
   
-  
-  protected void setAdapters() {
+//  @Override
+//  public boolean onCreateOptionsMenu(Menu menu) {
+//	  	// ActionBarのmenuを追加する処理
+//	  	MenuItem item = menu.add(0, 0, 0, "Help")
+//	  			.setIcon(R.drawable.ic_launcher);
+//	  	MenuItemCompat.setShowAsAction(item, MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
+//	  	return true;
+//  }
+
+
+
+protected void setAdapters() {
 	  /* adapter = new ArrayAdapter<GenreDataItem>(
 			  this,
 			  android.R.layout.simple_list_item_1,
@@ -73,6 +87,7 @@ public class GenreTopActivity extends Activity
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
 //			ListView lv = (ListView)parent;
+			// 2015.04.12 intent処理追加
 			Intent intent =  new Intent();
 			intent.setClassName("com.example.datapocket.activity", "com.example.datapocket.activity.ListActivity");
 			startActivity(intent);
