@@ -1378,21 +1378,22 @@ containing a value of this type.
         public static final int abc_config_showMenuShortcutsWhenKeyboardPresent=0x7f050003;
     }
     public static final class color {
-        public static final int abc_background_cache_hint_selector_material_dark=0x7f060031;
-        public static final int abc_background_cache_hint_selector_material_light=0x7f060032;
+        public static final int abc_background_cache_hint_selector_material_dark=0x7f060032;
+        public static final int abc_background_cache_hint_selector_material_light=0x7f060033;
         public static final int abc_input_method_navigation_guard=0x7f060003;
-        public static final int abc_primary_text_disable_only_material_dark=0x7f060033;
-        public static final int abc_primary_text_disable_only_material_light=0x7f060034;
-        public static final int abc_primary_text_material_dark=0x7f060035;
-        public static final int abc_primary_text_material_light=0x7f060036;
-        public static final int abc_search_url_text=0x7f060037;
+        public static final int abc_primary_text_disable_only_material_dark=0x7f060034;
+        public static final int abc_primary_text_disable_only_material_light=0x7f060035;
+        public static final int abc_primary_text_material_dark=0x7f060036;
+        public static final int abc_primary_text_material_light=0x7f060037;
+        public static final int abc_search_url_text=0x7f060038;
         public static final int abc_search_url_text_normal=0x7f060000;
         public static final int abc_search_url_text_pressed=0x7f060002;
         public static final int abc_search_url_text_selected=0x7f060001;
-        public static final int abc_secondary_text_material_dark=0x7f060038;
-        public static final int abc_secondary_text_material_light=0x7f060039;
+        public static final int abc_secondary_text_material_dark=0x7f060039;
+        public static final int abc_secondary_text_material_light=0x7f06003a;
         public static final int accent_material_dark=0x7f06000f;
         public static final int accent_material_light=0x7f06000e;
+        public static final int background_default=0x7f060031;
         public static final int background_floating_material_dark=0x7f060006;
         public static final int background_floating_material_light=0x7f060007;
         public static final int background_material_dark=0x7f060004;
@@ -1556,6 +1557,7 @@ containing a value of this type.
          */
         public static final int activity_horizontal_margin=0x7f070030;
         public static final int activity_vertical_margin=0x7f070031;
+        public static final int default_size=0x7f070032;
         /**  The platform's desired fixed height for a dialog along the major axis
          (the screen is in portrait). This may be either a fraction or a dimension.
  The platform's desired fixed height for a dialog along the major axis
@@ -1664,7 +1666,6 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f09002e;
         public static final int action_mode_bar_stub=0x7f09002d;
         public static final int action_mode_close_button=0x7f090020;
-        public static final int action_settings=0x7f090045;
         public static final int activity_chooser_view_content=0x7f090021;
         public static final int always=0x7f090014;
         public static final int beginning=0x7f09001b;
@@ -1700,6 +1701,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f090007;
         public static final int progress_horizontal=0x7f090008;
         public static final int radio=0x7f09002b;
+        public static final int save=0x7f090045;
         public static final int search_badge=0x7f090035;
         public static final int search_bar=0x7f090034;
         public static final int search_button=0x7f090036;
@@ -1775,13 +1777,15 @@ containing a value of this type.
         public static final int abc_search_dropdown_item_icons_2line=0x7f030013;
         public static final int abc_search_view=0x7f030014;
         public static final int abc_simple_dropdown_hint=0x7f030015;
-        public static final int activity_genre_top=0x7f030016;
-        public static final int activity_list=0x7f030017;
-        public static final int row_genre=0x7f030018;
-        public static final int support_simple_spinner_dropdown_item=0x7f030019;
+        public static final int activity_add_genre=0x7f030016;
+        public static final int activity_genre_top=0x7f030017;
+        public static final int activity_list=0x7f030018;
+        public static final int row_genre=0x7f030019;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001a;
     }
     public static final class menu {
-        public static final int main=0x7f0c0000;
+        public static final int custom=0x7f0c0000;
+        public static final int main=0x7f0c0001;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1840,9 +1844,19 @@ containing a value of this type.
         /**  Content description for the Toolbar icon used to collapse an expanded action mode. [CHAR LIMIT=NONE] 
          */
         public static final int abc_toolbar_collapse_description=0x7f0a0004;
-        public static final int action_settings=0x7f0a0011;
-        public static final int add=0x7f0a0012;
+        /**  ActionBar用 
+         */
+        public static final int add=0x7f0a0011;
+        /**  基本情報 
+         */
         public static final int app_name=0x7f0a0010;
+        public static final int data_description=0x7f0a0016;
+        /**  ジャンル追加画面用 
+         */
+        public static final int genre_setting_title=0x7f0a0013;
+        public static final int save=0x7f0a0012;
+        public static final int title=0x7f0a0014;
+        public static final int title_image=0x7f0a0015;
     }
     public static final class style {
         public static final int Animation_AppCompat_DropDownUp=0x7f0b00cf;
