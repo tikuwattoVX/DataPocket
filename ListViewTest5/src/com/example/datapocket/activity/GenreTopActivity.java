@@ -4,11 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.v7.app.ActionBar;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.Toolbar;
-import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,12 +12,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -132,13 +125,9 @@ protected void setAdapters() {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
-//			ListView lv = (ListView)parent;
-			// 2015.04.12 intent処理追加
 			Intent intent =  new Intent();
-			intent.setClassName("com.example.datapocket.activity", "com.example.datapocket.activity.ListActivity");
+			intent.setClassName(getApplicationContext(), "com.example.datapocket.activity.ListActivity");
 			startActivity(intent);
-//			String str = lv.getItemAtPosition(position).toString();
-//			Toast.makeText(getApplicationContext(), str + "clicked", Toast.LENGTH_SHORT).show();
 			
 		}
     	
