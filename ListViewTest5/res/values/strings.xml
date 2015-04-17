@@ -6,6 +6,7 @@
     <!-- ActionBar用 -->
 	<string name="add">追加</string>
 	<string name="save">保存</string>
+	<string name="custom">編集</string>
 	
 	<!-- ジャンル追加画面用 -->
 	<string name="genre_setting_title">基本情報</string>
