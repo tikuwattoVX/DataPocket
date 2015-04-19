@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_default"
+    android:orientation="vertical" >
+    
+    <!-- ◼︎基本情報 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/genre_setting_title"
+        android:textSize="@dimen/default_size"/>   
+    
+    <!-- タイトル -->
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title"
+        android:textSize="@dimen/default_size"/>
+    
+    <!-- タイトル入力部 -->
+    <EditText
+        android:id="@+id/genreTitleAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </EditText>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        
+        <!-- タイトル画像(タイトル） -->
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_image"
+            android:textSize="@dimen/default_size"/>
+        
+        <!-- タイトル画像（画像） -->
+        <ImageView 
+            android:id="@+id/genreImageAdd"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="20dp"
+            android:background="@color/black"/>
+    </LinearLayout>
+    
+    <!-- データ説明 -->
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/data_description"
+        android:textSize="@dimen/default_size"/>
+    
+    <!-- データ説明入力部 -->
+    <EditText
+        android:id="@+id/genreDataDescriptionAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_default"
+        android:inputType="textMultiLine">
+    </EditText>
+
+</LinearLayout>
