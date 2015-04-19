@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.datapocket.item.GenreDataItem;
+import com.example.datapocket.utility.Const;
 
 /**
  * Created by masakisakamoto on 2015/04/05.
@@ -41,11 +42,6 @@ import com.example.datapocket.item.GenreDataItem;
 public class GenreTopActivity extends BaseBackgroundActivity {
 
   static final String TAG = "ListViewTest";
-  static final String SYSTEM_VALUE = "systemValue";
-  static final String START_FIRST = "startFirst";
-  static final String GENRE_TITLE = "GenreTitle";
-  static final String GENRE_DESCRIPTION = "GenreDescription";
-  static final int REQUEST_CODE = 1001;
 
   private ListView mListView;
 
@@ -101,7 +97,7 @@ public class GenreTopActivity extends BaseBackgroundActivity {
 	  	case R.id.genre_add:
 	  		Intent intent = new Intent();
 	  		intent.setClassName(getApplicationContext(), "com.example.datapocket.activity.AddGenreActivity");
-	  		startActivityForResult(intent, REQUEST_CODE);
+	  		startActivityForResult(intent, Const.REQUEST_CODE);
 		default:
 			return super.onOptionsItemSelected(item);
 	  }
@@ -118,13 +114,13 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	super.onActivityResult(requestCode, resultCode, data);
 	 
     switch (requestCode) {
-    case REQUEST_CODE:
+    case Const.REQUEST_CODE:
       if (resultCode == RESULT_OK) {
     	Bundle bundle = data.getExtras();
         String keyTitle = bundle.getString("GENRE_TITLE");
         String keyDescription = bundle.getString("GENRE_DESCRIPTION");
         /**
-         * bundle.getInt("key.intData")などを使ってデータを回収する処理
+         * TODO:bundle.getInt("key.intData")などを使ってデータを回収する処理
          * 2.画面に描画する処理
          * 3.SQLiteでデータを保存する処理
          */
