@@ -17,6 +17,7 @@ import android.widget.ImageView;
 public class AddGenreActivity extends BaseBackgroundActivity {
 
 	static final String TAG = "AddGenreActivity";
+
     private EditText mTitleAdd;
 	private EditText mDescriptionAdd;
 	private ImageView imageAdd;
