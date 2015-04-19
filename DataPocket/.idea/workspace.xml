@@ -51,8 +51,8 @@
       <file leaf-file-name="AddGenreActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/datapocket/activity/AddGenreActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.2749326" vertical-offset="0" max-vertical-offset="1455">
-              <caret line="81" column="31" selection-start-line="81" selection-start-column="31" selection-end-line="81" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.5660377" vertical-offset="75" max-vertical-offset="1470">
+              <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1653,8 +1653,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/datapocket/activity/AddGenreActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.2749326" vertical-offset="0" max-vertical-offset="1455">
-          <caret line="81" column="31" selection-start-line="81" selection-start-column="31" selection-end-line="81" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.5660377" vertical-offset="75" max-vertical-offset="1470">
+          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -17,6 +17,7 @@ import android.widget.ImageView;
  * ジャンル追加画面
  * @author masakisakamoto
  * #編集保存機能
+ * テスト用
  */
 public class AddGenreActivity extends BaseBackgroundActivity {
 
