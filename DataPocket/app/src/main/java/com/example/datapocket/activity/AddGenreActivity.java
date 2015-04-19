@@ -1,6 +1,10 @@
 package com.example.datapocket.activity;
 
+import com.example.datapocket.utility.Const;
+import com.example.datapocket.utility.Key;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -28,6 +32,12 @@ public class AddGenreActivity extends BaseBackgroundActivity {
 		setContentView(R.layout.activity_add_genre);
 		
 		findViews();
+
+     // TODO:背景の設定処理
+//      int genreAddBackground = SQLiteから背景データを取得する処理
+//      if(!genreAddBackground==null) {
+//          setBackground(genreAddBackground);
+//      }
 	}
 	
 	public void findViews() {
@@ -58,13 +68,20 @@ public class AddGenreActivity extends BaseBackgroundActivity {
 			String Description = mDescriptionAdd.getText().toString();
 			// 入力判定処理
 			if(! title.isEmpty() || ! Description.isEmpty()) {
-				Log.v(TAG,"空じゃないです");
-				// 梱包処理
+				// TODO:梱包処理
+                Intent data = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putString(Key.GENRE_TITLE,title);
+                bundle.putString(Key.GENRE_DESCRIPTION,Description);
+                data.putExtras(bundle);
+
+                setResult(RESULT_OK, data);
+                finish();
 			}
-			/**
-			 * 1.編集入力判定処理
-			 * 2.確認ダイアログ処理
-			 */
+            else {
+                // TODO:警告ダイアログ
+            }
+
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

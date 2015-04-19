@@ -7,10 +7,12 @@ package com.example.datapocket.utility;
  */
 public class Const {
 
+    // class名
+    public static final String LIST_ACTIVITY = "com.example.datapocket.activity.ListActivity";
+    public static final String ADD_GENRE_ACTIVITY = "com.example.datapocket.activity.AddGenreActivity";
+    public static final String ADD_LIST_ACTIVITY = "com.example.datapocket.activity.AddListActivity";
+    public static final String CUSTOM_ALL_ACTIVITY = "com.example.datapocket.activity.CustomAllActivity";
+
     // GenreTopActivity用
-    public static final String SYSTEM_VALUE = "systemValue";
-    public static final String START_FIRST = "startFirst";
-    public static final String GENRE_TITLE = "GenreTitle";
-    public static final String GENRE_DESCRIPTION = "GenreDescription";
     public static final int REQUEST_CODE = 1001;
 }
