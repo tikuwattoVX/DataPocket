@@ -25,6 +25,7 @@ import java.util.List;
 
 import com.example.datapocket.item.GenreDataItem;
 import com.example.datapocket.utility.Const;
+import com.example.datapocket.utility.Key;
 
 /**
  * Created by masakisakamoto on 2015/04/05.
@@ -56,24 +57,29 @@ public class GenreTopActivity extends BaseBackgroundActivity {
       findViews();
       setAdapters();
 
-      SharedPreferences pref = getSharedPreferences("SYSTEM_VALUE", MODE_PRIVATE);
+      SharedPreferences pref = getSharedPreferences(Key.SYSTEM_VALUE, MODE_PRIVATE);
       // 初回起動かどうかの判定処理
 //      if (pref.getBoolean("START_FIRST", true)) {
 //          Log.v(TAG, "true通りました。");
-          // サンプルデータベースを表示する処理
-          setBackground(R.drawable.background_pocket);
-          dataList.add(new GenreDataItem(
-                  "魚料理",
-                  "サーモン料理は、主に魚です。"));
-          adapter.notifyDataSetChanged();
-          SharedPreferences.Editor editor = pref.edit();
-          editor.putBoolean("START_FIRST", false);
-          editor.commit();
-          // TODO:サンプル保存処理を記述
+      // サンプルデータベースを表示する処理
+      setBackground(R.drawable.background_pocket);
+      dataList.add(new GenreDataItem(
+              "魚料理",
+              "サーモン料理は、主に魚です。"));
+      adapter.notifyDataSetChanged();
+      SharedPreferences.Editor editor = pref.edit();
+      editor.putBoolean(Key.START_FIRST, false);
+      editor.commit();
+      // TODO:サンプル保存処理を記述
 //      } else {
 //          Log.v(TAG, "false通りました。");
+      // TODO:背景の設定処理
+//        int genreBackground = SQLiteから背景データを取得する処理
+//        if(!genreBackground==null) {
+//        setBackground(genreBackground);
+//        }
+      // TODO:タイトル、説明、画像セット処理
 //      }
-
   }
   
   /**
@@ -96,7 +102,7 @@ public class GenreTopActivity extends BaseBackgroundActivity {
 	  switch(item.getItemId()) {
 	  	case R.id.genre_add:
 	  		Intent intent = new Intent();
-	  		intent.setClassName(getApplicationContext(), "com.example.datapocket.activity.AddGenreActivity");
+	  		intent.setClassName(getApplicationContext(), Const.ADD_GENRE_ACTIVITY);
 	  		startActivityForResult(intent, Const.REQUEST_CODE);
 		default:
 			return super.onOptionsItemSelected(item);
@@ -117,8 +123,8 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     case Const.REQUEST_CODE:
       if (resultCode == RESULT_OK) {
     	Bundle bundle = data.getExtras();
-        String keyTitle = bundle.getString("GENRE_TITLE");
-        String keyDescription = bundle.getString("GENRE_DESCRIPTION");
+        String keyTitle = bundle.getString(Key.GENRE_TITLE);
+        String keyDescription = bundle.getString(Key.GENRE_DESCRIPTION);
         /**
          * TODO:bundle.getInt("key.intData")などを使ってデータを回収する処理
          * 2.画面に描画する処理
@@ -145,7 +151,7 @@ protected void setAdapters() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
             Intent intent = new Intent();
-            intent.setClassName(getApplicationContext(), "com.example.datapocket.activity.ListActivity");
+            intent.setClassName(getApplicationContext(), Const.LIST_ACTIVITY);
             startActivity(intent);
 
         }

@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.example.datapocket.utility.Const;
+
 public class ListActivity extends BaseBackgroundActivity {
 
 	@Override
@@ -37,11 +39,11 @@ public class ListActivity extends BaseBackgroundActivity {
 		Intent intent = new Intent();
 		switch(item.getItemId()) {
 		  case R.id.list_add:	// リスト追加ボタン
-		  	  intent.setClassName(getApplicationContext(), "com.example.datapocket.activity.AddListActivity");
+		  	  intent.setClassName(getApplicationContext(), Const.ADD_LIST_ACTIVITY);
 		  	  startActivity(intent);
 		  	  return true;
 		  case R.id.all_custom:	// 編集ボタン
-			  intent.setClassName(getApplicationContext(), "com.example.datapocket.activity.CustomAllActivity");
+			  intent.setClassName(getApplicationContext(), Const.CUSTOM_ALL_ACTIVITY);
 			  startActivity(intent);
 			  return true;
 		  default:
