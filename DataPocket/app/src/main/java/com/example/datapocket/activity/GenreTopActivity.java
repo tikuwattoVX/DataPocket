@@ -29,7 +29,7 @@ import com.example.datapocket.item.GenreDataItem;
  * Created by masakisakamoto on 2015/04/05.
  * ジャンル画面
  */
-public class GenreTopActivity extends Activity {
+public class GenreTopActivity extends BaseBackgroundActivity {
 
   static final String TAG = "ListViewTest";
   static final String SYSTEM_VALUE = "systemValue";
@@ -38,9 +38,8 @@ public class GenreTopActivity extends Activity {
   static final String GENRE_DESCRIPTION = "GenreDescription";
   static final int REQUEST_CODE = 1001;
 
-  FrameLayout frame;
-  ListView listView;
-  Button addButton;
+  private ListView mListView;
+
   static List<GenreDataItem> dataList = new ArrayList<GenreDataItem>();
   static GenreAdapter adapter;
 
@@ -57,7 +56,7 @@ public class GenreTopActivity extends Activity {
 //      if (pref.getBoolean("START_FIRST", true)) {
 //          Log.v(TAG, "true通りました。");
           // サンプルデータベースを表示する処理
-          frame.setBackgroundResource(R.drawable.background_pocket);
+          setBackground(R.drawable.background_pocket);
           dataList.add(new GenreDataItem(
                   "魚料理",
                   "サーモン料理は、主に魚です。"));
@@ -131,17 +130,15 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 protected void setAdapters() {
 	  adapter = new GenreAdapter();
-	  listView.setAdapter(adapter);
+	  mListView.setAdapter(adapter);
   }
   
   protected void findViews(){
-    frame = (FrameLayout)findViewById(R.id.genreFrame);
-    listView = (ListView)findViewById(R.id.listView1);
-    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    mListView = (ListView)findViewById(R.id.listView1);
+    mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
+        public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
             Intent intent = new Intent();
             intent.setClassName(getApplicationContext(), "com.example.datapocket.activity.ListActivity");
             startActivity(intent);

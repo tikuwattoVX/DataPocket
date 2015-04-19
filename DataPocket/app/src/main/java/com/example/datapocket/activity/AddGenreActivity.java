@@ -14,7 +14,7 @@ import android.widget.ImageView;
  * @author masakisakamoto
  * #編集保存機能
  */
-public class AddGenreActivity extends Activity {
+public class AddGenreActivity extends BaseBackgroundActivity {
 
 	static final String TAG = "AddGenreActivity";
     private EditText mTitleAdd;

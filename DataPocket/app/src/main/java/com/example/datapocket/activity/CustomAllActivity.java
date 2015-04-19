@@ -7,7 +7,7 @@ import android.os.Bundle;
  * @author masakisakamoto
  *
  */
-public class CustomAllActivity extends Activity {
+public class CustomAllActivity extends BaseBackgroundActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

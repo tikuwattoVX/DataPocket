@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-public class ListActivity extends Activity {
+public class ListActivity extends BaseBackgroundActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

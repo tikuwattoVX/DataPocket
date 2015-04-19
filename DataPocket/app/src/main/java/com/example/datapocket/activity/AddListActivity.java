@@ -7,7 +7,7 @@ import android.os.Bundle;
  * @author masakisakamoto
  *
  */
-public class AddListActivity extends Activity {
+public class AddListActivity extends BaseBackgroundActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
