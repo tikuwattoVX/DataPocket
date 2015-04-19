@@ -38,6 +38,7 @@ public class GenreTopActivity extends Activity
 //  static ArrayAdapter<GenreDataItem> adapter;
   static GenreAdapter adapter;
 
+  
   @Override
   public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,8 +97,8 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         /**
          * 1.bundle.getString("key.StringData")
          * bundle.getInt("key.intData")などを使ってデータを回収する処理
-         * 2.画面に描画する処理
-         * 3.SQLiteでデータを保存する処理
+         * 2.SQLiteでデータを保存する処理
+         * 3.画面に描画する処理
          */
             
       }
