@@ -27,7 +27,16 @@ import com.example.datapocket.item.GenreDataItem;
 
 /**
  * Created by masakisakamoto on 2015/04/05.
- * ジャンル画面
+ * GenreTopActivityClass
+ * ジャンル画面設定用クラス
+ *
+ * メソッド
+ * #onCreate(Bundle savedInstanceState)
+ * #onCreateOptionsMenu(Menu menu)
+ * #onOptionsItemSelected(MenuItem item)
+ * #onActivityResult(int requestCode, int resultCode, Intent data)
+ * #setAdapters()
+ * #findViews()
  */
 public class GenreTopActivity extends BaseBackgroundActivity {
 
