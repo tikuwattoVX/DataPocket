@@ -71,3 +71,7 @@ activity#com.example.datapocket.activity.CustomAllActivity
 ADDED from AndroidManifest.xml:28:9
 	android:name
 		ADDED from AndroidManifest.xml:28:19
+activity#com.example.datapocket.activity.DetailActivity
+ADDED from AndroidManifest.xml:29:9
+	android:name
+		ADDED from AndroidManifest.xml:29:19

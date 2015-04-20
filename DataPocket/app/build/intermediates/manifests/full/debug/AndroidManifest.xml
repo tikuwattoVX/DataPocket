@@ -26,6 +26,7 @@
         <activity android:name="com.example.datapocket.activity.AddGenreActivity" />
         <activity android:name="com.example.datapocket.activity.AddListActivity" />
         <activity android:name="com.example.datapocket.activity.CustomAllActivity" />
+        <activity android:name="com.example.datapocket.activity.DetailActivity" />
     </application>
 
 </manifest>

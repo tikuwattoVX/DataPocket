@@ -160,7 +160,7 @@ public class ListActivity extends BaseBackgroundActivity {
                                      getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                      v = inflater.inflate(R.layout.row_list, null);
                  }
-                 GenreDataItem data = (GenreDataItem)getItem(position);
+                 ListDataItem data = (ListDataItem)getItem(position);
                  if(data != null){
                      textView1 = (TextView) v.findViewById(R.id.listTitle);
                      textView2 = (TextView) v.findViewById(R.id.listMessage);
