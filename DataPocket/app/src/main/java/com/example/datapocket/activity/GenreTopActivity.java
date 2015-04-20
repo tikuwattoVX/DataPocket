@@ -42,7 +42,7 @@ import com.example.datapocket.utility.Key;
  */
 public class GenreTopActivity extends BaseBackgroundActivity {
 
-  static final String TAG = "ListViewTest";
+  static final String TAG = "GenreTopActivity";
 
   private ListView mListView;
 

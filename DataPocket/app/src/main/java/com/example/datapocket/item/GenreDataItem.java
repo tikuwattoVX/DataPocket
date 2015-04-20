@@ -2,6 +2,10 @@ package com.example.datapocket.item;
 
 import android.widget.ImageView;
 
+/**
+ * GenreDataItemClass
+ * ジャンル画面のアダプター用型
+ */
 public class GenreDataItem {
 	
 	String title;
