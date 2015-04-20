@@ -68,7 +68,7 @@ public class GenreTopActivity extends BaseBackgroundActivity {
               "サーモン料理は、主に魚です。"));
       adapter.notifyDataSetChanged();
       SharedPreferences.Editor editor = pref.edit();
-      editor.putBoolean(Key.START_FIRST, false);
+      editor.putBoolean(Key.GENRE_START_FIRST, false);
       editor.commit();
       // TODO:サンプル保存処理を記述
 //      } else {

@@ -14,5 +14,6 @@ public class Const {
     public static final String CUSTOM_ALL_ACTIVITY = "com.example.datapocket.activity.CustomAllActivity";
 
     // GenreTopActivity用
+    public static final String DETAIL_ACTIVITY = "com.example.datapocket.activity.DetailActivity";
     public static final int REQUEST_CODE = 1001;
 }
