@@ -37,6 +37,7 @@ public class AddGenreActivity extends BaseBackgroundActivity {
 //      int genreAddBackground = SQLiteから背景データを取得する処理
 //      if(!genreAddBackground==null) {
 //          setBackground(genreAddBackground);
+        setBackground(R.drawable.background_pocket);
 //      }
 	}
 	

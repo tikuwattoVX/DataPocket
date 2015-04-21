@@ -17,13 +17,13 @@
             android:minHeight="150dp">
 
 			<TextView 
-			  android:textSize="@dimen/genre_title_size"
+			  style="@style/genre_title"
 			  android:id="@+id/genreTitle" 
 			  android:layout_height="wrap_content" 
 			  android:layout_width="match_parent"/>
 
 			<TextView 
-			  android:textSize="@dimen/default_size"
+			  style="@style/genre_message"
 			  android:id="@+id/genreMessage" 
 			  android:layout_height="wrap_content" 
 			  android:layout_width="match_parent"/>

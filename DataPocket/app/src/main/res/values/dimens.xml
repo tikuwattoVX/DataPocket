@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <!-- Default screen margins, per the Android Design guidelines. -->
@@ -8,6 +9,6 @@
 
     <dimen name="genre_title_size">26dp</dimen>
 
-    <dimen name="devider_nomal">2dp</dimen>
+    <dimen name="devider_nomal">4dp</dimen>
 
 </resources>

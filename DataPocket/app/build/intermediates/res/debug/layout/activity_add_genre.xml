@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_default"
+    android:id="@+id/scrollView"
+    android:layout_gravity="center_horizontal" >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="30dp"
+    android:background="@drawable/custom_window"
     android:orientation="vertical" >
     
     <!-- ◼︎基本情報 -->
     <TextView
+        style="@style/activity_add_genre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/genre_setting_title"
@@ -59,9 +67,9 @@
         android:id="@+id/genreDataDescriptionAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_default"
         android:inputType="textMultiLine">
     </EditText>
 
 </LinearLayout>
+</ScrollView>
 <!-- From: file:/Users/masakisakamoto/AndroidStudioProjects/DataPocket/app/src/main/res/layout/activity_add_genre.xml -->
