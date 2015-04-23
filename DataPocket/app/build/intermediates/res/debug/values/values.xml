@@ -188,6 +188,7 @@
     <string name="custom">編集</string>
     <string name="data_description">データ説明</string>
     <string name="genre_setting_title">基本情報</string>
+    <string name="list_setting_title">リスト情報</string>
     <string name="save">保存</string>
     <string name="title">タイトル</string>
     <string name="title_image">タイトル画像</string>
@@ -1247,6 +1248,18 @@
         <item name="android:textSize">20dp</item>
         <item name="android:textColor">@color/black</item>
     </style>
+    <style name="activity_add_list">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:textSize">@dimen/default_size</item>
+    </style>
+    <style name="divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">2dp</item>
+        <item name="android:background">#3F649A</item>
+    </style>
     <style name="genre_message">
         <item name="android:textSize">@dimen/default_size</item>
         <item name="android:textColor">@color/white</item>
@@ -1254,5 +1267,12 @@
     <style name="genre_title">
         <item name="android:textSize">@dimen/genre_title_size</item>
         <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="imageBox">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_margin">20dp</item>
+        <item name="android:background">@drawable/image_window</item>
     </style>
 </resources>

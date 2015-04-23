@@ -12,6 +12,7 @@ public class Const {
     public static final String ADD_GENRE_ACTIVITY = "com.example.datapocket.activity.AddGenreActivity";
     public static final String ADD_LIST_ACTIVITY = "com.example.datapocket.activity.AddListActivity";
     public static final String CUSTOM_ALL_ACTIVITY = "com.example.datapocket.activity.CustomAllActivity";
+    public static final String CUSTOM_LIST_ACTIVITY = "com.example.datapocket.activity.CustomListActivity";
 
     // GenreTopActivity用
     public static final String DETAIL_ACTIVITY = "com.example.datapocket.activity.DetailActivity";

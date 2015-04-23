@@ -27,6 +27,7 @@
         <activity android:name=".AddListActivity"></activity>
         <activity android:name=".CustomAllActivity"></activity>
         <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".CustomListActivity"></activity>
     </application>
 
 </manifest>

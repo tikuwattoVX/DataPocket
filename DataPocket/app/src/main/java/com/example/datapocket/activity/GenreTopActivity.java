@@ -64,21 +64,22 @@ public class GenreTopActivity extends BaseBackgroundActivity {
       // サンプルデータベースを表示する処理
       setBackground(R.drawable.background_pocket);
       dataList.add(new GenreDataItem(
+      // TODO #3 サンプルをちゃんとしたものになおす
               "魚料理",
               "サーモン料理は、主に魚です。"));
       adapter.notifyDataSetChanged();
       SharedPreferences.Editor editor = pref.edit();
       editor.putBoolean(Key.GENRE_START_FIRST, false);
       editor.commit();
-      // TODO:サンプル保存処理を記述
+      // TODO #4 サンプル保存処理を記述
 //      } else {
 //          Log.v(TAG, "false通りました。");
-      // TODO:背景の設定処理
+      // TODO #5 SQLiteから背景データを読み取り描画する。データがなければデフォルトを設定する
 //        int genreBackground = SQLiteから背景データを取得する処理
 //        if(!genreBackground==null) {
 //        setBackground(genreBackground);
 //        }
-      // TODO:タイトル、説明、画像セット処理
+      // TODO #6 SQLiteからタイトル、説明、画像を読み込み描画する
 //      }
   }
   
@@ -125,11 +126,12 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	Bundle bundle = data.getExtras();
         String keyTitle = bundle.getString(Key.GENRE_TITLE);
         String keyDescription = bundle.getString(Key.GENRE_DESCRIPTION);
-        /**
-         * TODO:bundle.getInt("key.intData")などを使ってデータを回収する処理
-         * 2.画面に描画する処理
-         * 3.SQLiteでデータを保存する処理
-         */
+
+        // TODO #1 取得したデータをSQLiteに保存する処理を記述する
+
+        // TODO #2 描画処理を保存したSQLiteからの読み込みに変更する　
+        dataList.add(new GenreDataItem(keyTitle, keyDescription));
+        adapter.notifyDataSetChanged();
             
       }
       break;
@@ -182,6 +184,7 @@ protected void setAdapters() {
 		int position,
 		View convertView,
 		ViewGroup parent) {
+        // TODO #7 画像も扱えるようにする
 		
 		TextView textView1;
 		TextView textView2;
@@ -206,3 +209,5 @@ protected void setAdapters() {
 	  
   }
 }
+
+// TODO #8 GenreTopのレイアウトを修正する。margin,paddingなど

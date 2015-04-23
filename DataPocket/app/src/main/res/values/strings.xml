@@ -13,5 +13,7 @@
 	<string name="title">タイトル</string>
 	<string name="title_image">タイトル画像</string>
 	<string name="data_description">データ説明</string>
-	
+
+    <!-- リスト追加画面 -->
+    <string name="list_setting_title">リスト情報</string>
 </resources>

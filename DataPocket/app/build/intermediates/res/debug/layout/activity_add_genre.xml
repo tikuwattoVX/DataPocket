@@ -17,13 +17,21 @@
         style="@style/activity_add_genre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/genre_setting_title"
-        android:textSize="@dimen/default_size"/>   
+        android:textSize="@dimen/default_size"/>
+
+    <View style="@style/divider"/>
     
     <!-- タイトル -->
     <TextView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="5dp"
         android:text="@string/title"
         android:textSize="@dimen/default_size"/>
     
@@ -31,34 +39,43 @@
     <EditText
         android:id="@+id/genreTitleAdd"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="5dp">
+
     </EditText>
-    
-    <LinearLayout 
+
+    <View style="@style/divider"/>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:padding="16dp">
         
         <!-- タイトル画像(タイトル） -->
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="@string/title_image"
             android:textSize="@dimen/default_size"/>
         
         <!-- タイトル画像（画像） -->
-        <ImageView 
-            android:id="@+id/genreImageAdd"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="20dp"
-            android:background="@color/black"/>
-    </LinearLayout>
-    
+        <ImageView android:id="@+id/genreImageAdd"
+                   style="@style/imageBox"/>
+
+    </RelativeLayout>
+
+    <View style="@style/divider"/>
+
     <!-- データ説明 -->
     <TextView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="5dp"
         android:text="@string/data_description"
         android:textSize="@dimen/default_size"/>
     
@@ -67,6 +84,8 @@
         android:id="@+id/genreDataDescriptionAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="#EEEEEE"
         android:inputType="textMultiLine">
     </EditText>
 

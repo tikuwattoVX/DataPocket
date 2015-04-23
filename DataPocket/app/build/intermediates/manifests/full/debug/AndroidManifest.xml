@@ -27,6 +27,7 @@
         <activity android:name="com.example.datapocket.activity.AddListActivity" />
         <activity android:name="com.example.datapocket.activity.CustomAllActivity" />
         <activity android:name="com.example.datapocket.activity.DetailActivity" />
+        <activity android:name="com.example.datapocket.activity.CustomListActivity" />
     </application>
 
 </manifest>
