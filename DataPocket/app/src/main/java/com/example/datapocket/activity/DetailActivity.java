@@ -20,6 +20,12 @@ public class DetailActivity extends BaseBackgroundActivity {
         setContentView(R.layout.activity_detail);
 
         findViews();
+
+        // TODO:背景の設定処理
+//      int genreAddBackground = SQLiteから背景データを取得する処理
+//      if(!genreAddBackground==null) {
+//          setBackground(genreAddBackground);
+        setBackground(R.drawable.background_pocket);
     }
 
     private void findViews() {

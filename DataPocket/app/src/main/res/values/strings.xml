@@ -16,4 +16,10 @@
 
     <!-- リスト追加画面 -->
     <string name="list_setting_title">リスト情報</string>
+
+    <!-- カスタムオール画面 -->
+    <string name="custom_all_genre_title">ジャンル</string>
+    <string name="custom_all_list_title">リスト</string>
+    <string name="custom_all_detail_title">詳細ページ</string>
+
 </resources>

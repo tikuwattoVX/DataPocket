@@ -23,6 +23,12 @@
         <item name="android:textSize">@dimen/default_size</item>
     </style>
 
+    <style name="custom_all_title_text" >
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+
     <!-- divider -->
     <style name="divider">
         <item name="android:layout_width">match_parent</item>
