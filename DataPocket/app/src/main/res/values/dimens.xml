@@ -9,6 +9,6 @@
 
     <dimen name="genre_title_size">26dp</dimen>
 
-    <dimen name="devider_nomal">4dp</dimen>
+    <dimen name="devider_nomal">2dp</dimen>
 
 </resources>

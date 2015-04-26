@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,6 +30,7 @@ public class ListActivity extends BaseBackgroundActivity {
     static final String TAG = "ListViewTest";
 
     private ListView mListView;
+    private String mDPid; // TODO getIntentで取得したDPIDを保持する為の変数
 
     static List<ListDataItem> dataList = new ArrayList<ListDataItem>();
     static ListAdapter adapter;
@@ -38,6 +40,12 @@ public class ListActivity extends BaseBackgroundActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list);
 
+        // TODO getIntent処理
+        Intent intent = getIntent();
+        if(intent != null) {
+            mDPid = intent.getStringExtra(Key.Columns_DPID);
+        }
+        Log.v(TAG, mDPid + "取得しました。");
         findViews();
         setAdapters();
 
@@ -65,6 +73,11 @@ public class ListActivity extends BaseBackgroundActivity {
         // TODO:タイトル、説明、画像セット処理
 //      }
 	}
+
+    public static Intent createIntent(Context context, String dpid) {
+        return new Intent(context, ListActivity.class)
+                .putExtra(Key.Columns_DPID,dpid);
+    }
 
     protected void findViews() {
         mListView = (ListView) findViewById(R.id.listView2);

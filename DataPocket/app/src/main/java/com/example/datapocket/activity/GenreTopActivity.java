@@ -162,14 +162,10 @@ protected void setAdapters() {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            // startActivity(createIntent(key.value, key.value, class))
             ListView listView = (ListView)parent;
             GenreDataItem genreDataItem =(GenreDataItem)listView.getItemAtPosition(position);
             Log.v(TAG, genreDataItem.toString());
-            Intent intent = new Intent();
-            intent.setClassName(getApplicationContext(), Const.LIST_ACTIVITY);
-            startActivity(intent);
-
+            startActivity(ListActivity.createIntent(getApplicationContext(), "dpid"));
         }
 
 
