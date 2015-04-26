@@ -7,7 +7,8 @@ import android.widget.ImageView;
  * ジャンル画面のアダプター用型
  */
 public class GenreDataItem {
-	
+
+    // TODO #1 primaryKey保持変数を作成
 	String title;
 	String msg;
 	ImageView image;
@@ -24,7 +25,7 @@ public class GenreDataItem {
 	public String getMsg(){
 	  return msg;
 	}
-	  
+	// TODO toStringでprimaryKeyを返すようにする
 	public String toString(){
 	  return title + ":" + msg;
 	}

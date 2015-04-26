@@ -4,8 +4,15 @@ import com.example.datapocket.utility.Const;
 import com.example.datapocket.utility.Key;
 
 import android.app.Activity;
+
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,13 +31,13 @@ public class AddGenreActivity extends BaseBackgroundActivity {
 
     private EditText mTitleAdd;
 	private EditText mDescriptionAdd;
-	private ImageView imageAdd;
+	private ImageView mImageAdd;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_genre);
-		
+
 		findViews();
 
      // TODO:背景の設定処理
@@ -44,7 +51,7 @@ public class AddGenreActivity extends BaseBackgroundActivity {
 	public void findViews() {
 		mTitleAdd = (EditText)findViewById(R.id.genreTitleAdd);
 		mDescriptionAdd = (EditText)findViewById(R.id.genreDataDescriptionAdd);
-		imageAdd = (ImageView)findViewById(R.id.genreImageAdd);
+//		imageAdd = (ImageView)findViewById(R.id.genreImageAdd);
 	}
 	/**
 	 * ActionBarMenu
@@ -80,13 +87,26 @@ public class AddGenreActivity extends BaseBackgroundActivity {
                 finish();
 			}
             else {
-                // TODO:警告ダイアログ
-            }
+                /* 未入力の場合、警告ダイアログを表示する処理 */
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setTitle("入力エラー");
+                alertDialogBuilder.setMessage("未入力です。");
+                alertDialogBuilder.setPositiveButton("確認",
+                        new DialogInterface.OnClickListener() {
 
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+
+                        });
+                alertDialogBuilder.setCancelable(true);
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+            }
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 	}
-
 }

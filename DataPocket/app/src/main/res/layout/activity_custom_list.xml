@@ -1,5 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/scrollView"
+    android:layout_gravity="center_horizontal" >
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:background="@drawable/custom_window"
+        android:orientation="vertical" >
+
+        <!-- ◼︎リスト情報 -->
+        <TextView
+            style="@style/activity_add_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/list_setting_title"/>
+
+        <View style="@style/divider"/>
+
+        <!-- タイトル -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/title"
+            android:textSize="@dimen/default_size"/>
+
+        <!-- タイトル入力部 -->
+        <EditText
+            android:id="@+id/listTitleAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/list_setting_title_hint">
+
+        </EditText>
+
+        <View style="@style/divider"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <!-- タイトル画像(タイトル） -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="@string/title_image"
+                android:textSize="@dimen/default_size"/>
+
+            <!-- タイトル画像（画像） -->
+            <Button android:id="@+id/genreImageAdd"
+                android:layout_alignParentRight="true"
+                android:text="@string/image"
+                style="@style/imageBox"/>
+
+        </RelativeLayout>
+
+        <View style="@style/divider"/>
+
+        <!-- データ説明 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/data_description"
+            android:textSize="@dimen/default_size"/>
+
+        <!-- データ説明入力部 -->
+        <EditText
+            android:id="@+id/listDataDescriptionAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="#EEEEEE"
+            android:inputType="textMultiLine"
+            android:hint="@string/list_setting_descripton_hint">
+        </EditText>
+
+    </LinearLayout>
+</ScrollView>

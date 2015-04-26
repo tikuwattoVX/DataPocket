@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +28,7 @@ import java.util.List;
 import com.example.datapocket.item.GenreDataItem;
 import com.example.datapocket.utility.Const;
 import com.example.datapocket.utility.Key;
+import com.example.datapocket.utility.MyDBHelper;
 
 /**
  * Created by masakisakamoto on 2015/04/05.
@@ -58,20 +60,27 @@ public class GenreTopActivity extends BaseBackgroundActivity {
       findViews();
       setAdapters();
 
-      SharedPreferences pref = getSharedPreferences(Key.SYSTEM_VALUE, MODE_PRIVATE);
-      // 初回起動かどうかの判定処理
-//      if (pref.getBoolean("START_FIRST", true)) {
-//          Log.v(TAG, "true通りました。");
-      // サンプルデータベースを表示する処理
+//      MyDBHelper helper = new MyDBHelper(this);
+//      final SQLiteDatabase db = helper.getWritableDatabase();
+
+      // TODO # サンプルデータベースを表示する処理
+      // 初回起動判定及び初回起動処理を行うメソッド
+
+      // helper.isStartFirst();
+
+      // SQLiteのGenreデータ取得処理
+      // dataList = helper.selectGenre();
+      // adapter.notifyDataSetChanged();
+
+      /*** ここからテスト用のデータ　本番では消す ***/
       setBackground(R.drawable.background_pocket);
       dataList.add(new GenreDataItem(
       // TODO #3 サンプルをちゃんとしたものになおす
               "魚料理",
               "サーモン料理は、主に魚です。"));
       adapter.notifyDataSetChanged();
-      SharedPreferences.Editor editor = pref.edit();
-      editor.putBoolean(Key.GENRE_START_FIRST, false);
-      editor.commit();
+      /***************** ここまで ***************/
+
       // TODO #4 サンプル保存処理を記述
 //      } else {
 //          Log.v(TAG, "false通りました。");
@@ -154,7 +163,9 @@ protected void setAdapters() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             // startActivity(createIntent(key.value, key.value, class))
-            Log.v(TAG, position + ":" + id );
+            ListView listView = (ListView)parent;
+            GenreDataItem genreDataItem =(GenreDataItem)listView.getItemAtPosition(position);
+            Log.v(TAG, genreDataItem.toString());
             Intent intent = new Intent();
             intent.setClassName(getApplicationContext(), Const.LIST_ACTIVITY);
             startActivity(intent);

@@ -2,6 +2,10 @@ package com.example.datapocket.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+
 /**
  * リストからの編集画面
  * @author masakisakamoto
@@ -28,4 +32,46 @@ public class CustomAllActivity extends BaseBackgroundActivity {
         // TODO:取得処理
     }
 
+    /**
+     * ActionBarMenu
+     * #編集保存ボタン
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.custom, menu);
+        return true;
+    }
+
+    /**
+     * ActionBarClickイベント
+     * #編集保存ボタン
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.save:
+//                String title = mTitleAdd.getText().toString();
+//                String Description = mDescriptionAdd.getText().toString();
+                // 入力判定処理
+//                if(! title.isEmpty() || ! Description.isEmpty()) {
+                // TODO:梱包処理
+//                    Intent data = new Intent();
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString(Key.GENRE_TITLE,title);
+//                    bundle.putString(Key.GENRE_DESCRIPTION,Description);
+//                    data.putExtras(bundle);
+
+//                    setResult(RESULT_OK, data);
+                finish();
+//                }
+//                else {
+                // TODO:警告ダイアログ
+//                }
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

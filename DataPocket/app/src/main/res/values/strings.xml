@@ -2,6 +2,7 @@
 <resources>
 	<!-- 基本情報 -->
     <string name="app_name">DataPocket</string>
+    <string name="image">画像</string>
     
     <!-- ActionBar用 -->
 	<string name="add">追加</string>
@@ -13,9 +14,13 @@
 	<string name="title">タイトル</string>
 	<string name="title_image">タイトル画像</string>
 	<string name="data_description">データ説明</string>
+    <string name="genre_setting_title_hint">タイトルを入力してください。</string>
+    <string name="genre_setting_description_hint">説明内容を入力してください。</string>
 
     <!-- リスト追加画面 -->
     <string name="list_setting_title">リスト情報</string>
+    <string name="list_setting_title_hint">タイトルを入力してください。</string>
+    <string name="list_setting_descripton_hint">説明内容を入力してください。</string>
 
     <!-- カスタムオール画面 -->
     <string name="custom_all_genre_title">ジャンル</string>

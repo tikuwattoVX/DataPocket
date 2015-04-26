@@ -190,8 +190,13 @@
     <string name="custom_all_genre_title">ジャンル</string>
     <string name="custom_all_list_title">リスト</string>
     <string name="data_description">データ説明</string>
+    <string name="genre_setting_description_hint">説明内容を入力してください。</string>
     <string name="genre_setting_title">基本情報</string>
+    <string name="genre_setting_title_hint">タイトルを入力してください。</string>
+    <string name="image">画像</string>
+    <string name="list_setting_descripton_hint">説明内容を入力してください。</string>
     <string name="list_setting_title">リスト情報</string>
+    <string name="list_setting_title_hint">タイトルを入力してください。</string>
     <string name="save">保存</string>
     <string name="title">タイトル</string>
     <string name="title_image">タイトル画像</string>
@@ -1262,6 +1267,9 @@
         <item name="android:textSize">20dp</item>
         <item name="android:textColor">@color/black</item>
     </style>
+    <style name="detail_bottom_parts">
+        <item name="android:background">#ffffff</item>
+    </style>
     <style name="divider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">2dp</item>
@@ -1278,7 +1286,6 @@
     <style name="imageBox">
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">100dp</item>
-        <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_margin">20dp</item>
         <item name="android:background">@drawable/image_window</item>
     </style>
