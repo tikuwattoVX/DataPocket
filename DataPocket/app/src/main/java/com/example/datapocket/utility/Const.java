@@ -17,4 +17,7 @@ public class Const {
     // GenreTopActivity用
     public static final String DETAIL_ACTIVITY = "com.example.datapocket.activity.DetailActivity";
     public static final int REQUEST_CODE = 1001;
+
+    // Intent用
+    public static final int REQUEST_GALLERY = 1002;
 }

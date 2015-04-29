@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/scrollView"
@@ -90,6 +94,8 @@ l">
             android:inputType="textMultiLine">
         </EditText>
 
+        <View style="@style/divider"/>
+
         <!-- ◼︎リスト -->
         <TextView
             style="@style/custom_all_title_text"
@@ -98,10 +104,130 @@ l">
             android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginBottom="10dp"
-            android:text="@string/custom_all_genre_title"
+            android:text="@string/custom_all_list_title"
+            android:textSize="@dimen/default_size"/>
+
+        <View style="@style/divider"/>
+
+        <!-- 背景選択 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/background_selection"
+            android:textSize="@dimen/default_size"/>
+
+        <!-- 背景選択用ボタン作成予定地 -->
+
+        <View style="@style/divider"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <!-- 背景画像(タイトル） -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="@string/background_image"
+                android:textSize="@dimen/default_size"/>
+
+            <!-- 背景画像（画像） -->
+            <ImageView android:id="@+id/listCustomBackgroundImage"
+                style="@style/imageBox"/>
+
+        </RelativeLayout>
+
+        <View style="@style/divider"/>
+
+        <!-- 背景色（タイトル） -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/background_color"
+            android:textSize="@dimen/default_size"/>
+
+        <View style="@style/divider"/>
+
+        <!-- 区切り線（タイトル） -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/divider_line"
+            android:textSize="@dimen/default_size"/>
+
+        <View style="@style/divider"/>
+
+        <!-- ◼︎詳細ページ -->
+        <TextView
+            style="@style/custom_all_title_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/custom_all_detail_title"
+            android:textSize="@dimen/default_size"/>
+
+        <View style="@style/divider"/>
+
+        <!-- 背景選択 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/background_selection"
+            android:textSize="@dimen/default_size"/>
+
+        <!-- 背景選択用ボタン作成予定地 -->
+
+        <View style="@style/divider"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <!-- 背景画像(タイトル） -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="@string/background_image"
+                android:textSize="@dimen/default_size"/>
+
+            <!-- 背景画像（画像） -->
+            <ImageView android:id="@+id/detailCustomBackgroundImage"
+                style="@style/imageBox"/>
+
+        </RelativeLayout>
+
+        <View style="@style/divider"/>
+
+        <!-- 背景色（タイトル） -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/background_color"
             android:textSize="@dimen/default_size"/>
 
     </LinearLayout>
 
 </ScrollView>
-<!-- From: file:/Users/masakisakamoto/AndroidStudioProjects/DataPocket/app/src/main/res/layout/activity_custom_all.xml -->
+
+</LinearLayout><!-- From: file:/Users/masakisakamoto/AndroidStudioProjects/DataPocket/app/src/main/res/layout/activity_custom_all.xml -->

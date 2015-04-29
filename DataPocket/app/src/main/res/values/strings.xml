@@ -26,5 +26,9 @@
     <string name="custom_all_genre_title">ジャンル</string>
     <string name="custom_all_list_title">リスト</string>
     <string name="custom_all_detail_title">詳細ページ</string>
+    <string name="background_selection">背景選択</string>
+    <string name="background_image">背景画像</string>
+    <string name="background_color">背景色</string>
+    <string name="divider_line">区切り線</string>
 
 </resources>

@@ -11,14 +11,25 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.provider.MediaStore.Images.Media;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * ジャンル追加画面
@@ -49,11 +60,56 @@ public class AddGenreActivity extends BaseBackgroundActivity {
 	}
 	
 	public void findViews() {
-		mTitleAdd = (EditText)findViewById(R.id.genreTitleAdd);
-		mDescriptionAdd = (EditText)findViewById(R.id.genreDataDescriptionAdd);
-//		imageAdd = (ImageView)findViewById(R.id.genreImageAdd);
-	}
-	/**
+        mTitleAdd = (EditText) findViewById(R.id.genreTitleAdd);
+        mDescriptionAdd = (EditText) findViewById(R.id.genreDataDescriptionAdd);
+        mImageAdd = (ImageView) findViewById(R.id.genreImageAdd);
+        mImageAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.genreImageAdd:
+                        Log.v(TAG, "イメージクリックしました。");
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_PICK);
+                        startActivityForResult(intent, Const.REQUEST_GALLERY);
+                        break;
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+            if(requestCode == Const.REQUEST_GALLERY) {
+                Log.v(TAG, "キャッチしました。1");
+                if (resultCode == RESULT_OK) {
+                    Log.v(TAG, "キャッチしました。2");
+                    putImage(data);
+                }
+                // 画像が選択されていない場合は何もしない。
+            }
+    }
+
+    /**
+     * putImageメソッド
+     * 追加画像の表示を選択したものに切り替えるmメソッド
+     * @param intent
+     */
+    public void putImage(Intent intent) {
+        try {
+            InputStream stream = getContentResolver().openInputStream(intent.getData());
+            Bitmap bmp = BitmapFactory.decodeStream(stream);
+            stream.close();
+
+            mImageAdd.setImageBitmap(bmp);
+        } catch (Exception e) {
+        }
+    }
+
+    /**
 	 * ActionBarMenu
 	 * #編集保存ボタン
 	 */
@@ -73,14 +129,19 @@ public class AddGenreActivity extends BaseBackgroundActivity {
 		switch(item.getItemId()) {
 		case R.id.save:
 			String title = mTitleAdd.getText().toString();
-			String Description = mDescriptionAdd.getText().toString();
+			String description = mDescriptionAdd.getText().toString();
 			// 入力判定処理
-			if(! title.isEmpty() || ! Description.isEmpty()) {
+			if(! title.isEmpty() || ! description.isEmpty()) {
 				// TODO:梱包処理
                 Intent data = new Intent();
                 Bundle bundle = new Bundle();
                 bundle.putString(Key.GENRE_TITLE,title);
-                bundle.putString(Key.GENRE_DESCRIPTION,Description);
+                bundle.putString(Key.GENRE_DESCRIPTION,description);
+                if(mImageAdd.getDrawable() != null) {   // 編集した画像がある場合
+                    Log.v(TAG, "画像あるよ");
+                    Bitmap image = ((BitmapDrawable) mImageAdd.getDrawable()).getBitmap();
+                    bundle.putParcelable(Key.GENRE_IMAGE, image);
+                }
                 data.putExtras(bundle);
 
                 setResult(RESULT_OK, data);

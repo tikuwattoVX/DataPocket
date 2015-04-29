@@ -80,7 +80,8 @@ public class MyDBHelper extends SQLiteOpenHelper{
             while (cursor.moveToNext()){
                 GenreList.add(new GenreDataItem(
                         cursor.getString(0),
-                        cursor.getString(1)
+                        cursor.getString(1),
+                        null
                         ));
             }
         }finally{

@@ -1,5 +1,6 @@
 package com.example.datapocket.item;
 
+import android.graphics.Bitmap;
 import android.widget.ImageView;
 
 /**
@@ -11,11 +12,12 @@ public class GenreDataItem {
     // TODO #1 primaryKey保持変数を作成
 	String title;
 	String msg;
-	ImageView image;
+	Bitmap image;
 	  
-	public GenreDataItem(String title, String msg){
+	public GenreDataItem(String title, String msg, Bitmap image){
 	  this.title = title;
 	  this.msg = msg;
+      this.image = image;
 	}
 	  
 	public String getTitle(){
@@ -25,6 +27,8 @@ public class GenreDataItem {
 	public String getMsg(){
 	  return msg;
 	}
+
+    public Bitmap getImage() { return image; }
 	// TODO toStringでprimaryKeyを返すようにする
 	public String toString(){
 	  return title + ":" + msg;

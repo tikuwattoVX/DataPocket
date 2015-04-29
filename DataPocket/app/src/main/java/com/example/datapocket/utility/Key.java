@@ -14,6 +14,9 @@ public class Key {
     // ListActivity
     public static final String LIST_START_FIRST = "listStartFirst";
 
+    // AddGenreActivity
+    public static final String GENRE_IMAGE = "genreImage";
+
     //テーブル名
     public static final String TABLE_NAME = "DataPocket";
     //プライマリキー

@@ -6,8 +6,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,6 +23,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -74,10 +79,14 @@ public class GenreTopActivity extends BaseBackgroundActivity {
 
       /*** ここからテスト用のデータ　本番では消す ***/
       setBackground(R.drawable.background_pocket);
+      // TODO ↓２行サンプル表示テスト用。終わったら消す
+      Resources r = getResources();
+      Bitmap bmp = BitmapFactory.decodeResource(r, R.drawable.doroid_test);
       dataList.add(new GenreDataItem(
       // TODO #3 サンプルをちゃんとしたものになおす
               "魚料理",
-              "サーモン料理は、主に魚です。"));
+              "サーモン料理は、主に魚です。",
+              bmp));
       adapter.notifyDataSetChanged();
       /***************** ここまで ***************/
 
@@ -129,18 +138,25 @@ public class GenreTopActivity extends BaseBackgroundActivity {
   @Override
 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	super.onActivityResult(requestCode, resultCode, data);
-	 
+
+    Bitmap keyImage;
+
     switch (requestCode) {
     case Const.REQUEST_CODE:
       if (resultCode == RESULT_OK) {
     	Bundle bundle = data.getExtras();
         String keyTitle = bundle.getString(Key.GENRE_TITLE);
         String keyDescription = bundle.getString(Key.GENRE_DESCRIPTION);
-
+        if(bundle.getParcelable(Key.GENRE_IMAGE) != null) {
+            keyImage = (Bitmap) bundle.getParcelable(Key.GENRE_IMAGE);
+        } else {
+            Log.v(TAG, "空です");
+            keyImage = null;
+        }
         // TODO #1 取得したデータをSQLiteに保存する処理を記述する
 
         // TODO #2 描画処理を保存したSQLiteからの読み込みに変更する　
-        dataList.add(new GenreDataItem(keyTitle, keyDescription));
+        dataList.add(new GenreDataItem(keyTitle, keyDescription, keyImage));
         adapter.notifyDataSetChanged();
             
       }
@@ -210,7 +226,14 @@ protected void setAdapters() {
 	      if(data != null){
 	        textView1 = (TextView) v.findViewById(R.id.genreTitle);
 	        textView2 = (TextView) v.findViewById(R.id.genreMessage);
-	        
+//            LinearLayout layout =(LinearLayout)v.findViewById(R.id.rowGenre);
+            // TODO 背景画像を設定する処理。うまくいくか確認中
+              if(data.getImage() != null) {
+                  // TODO
+                  Drawable drawable = new BitmapDrawable(getResources(), data.getImage());
+                  mListView.setBackground(drawable);
+//                  layout.setBackground(drawable)
+              }
 	        textView1.setText(data.getTitle());
 	        textView2.setText(data.getMsg());
 	      }
@@ -221,3 +244,4 @@ protected void setAdapters() {
 }
 
 // TODO #8 GenreTopのレイアウトを修正する。margin,paddingなど
+// TODO #9 GenreADDで編集できる背景はリスト個々のものか、画面全体のものか。（仕様決め）
