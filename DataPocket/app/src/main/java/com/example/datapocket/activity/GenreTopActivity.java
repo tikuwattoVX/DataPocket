@@ -69,7 +69,6 @@ public class GenreTopActivity extends BaseBackgroundActivity {
 
       MyDBHelper helper = new MyDBHelper(this);
       helper.isStartFirst();
-//      final SQLiteDatabase db = helper.getWritableDatabase();
       dataList = helper.selectGenre();
 
       // TODO # サンプルデータベースを表示する処理
@@ -153,18 +152,21 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         String keyDescription = bundle.getString(Key.GENRE_DESCRIPTION);
           // TODO if文の条件を修正する
 //        if(bundle.getParcelable(Key.GENRE_IMAGE) != null) {
-            keyImage = bundle.getString(Key.GENRE_IMAGE);
-            Toast.makeText(this, keyImage, Toast.LENGTH_SHORT).show();
-            Log.v(TAG, keyImage);
+//            keyImage = bundle.getString(Key.GENRE_IMAGE);
+//            Toast.makeText(this, keyImage, Toast.LENGTH_SHORT).show();
+//            Log.v(TAG, keyImage);
 //        } else {
 
             keyImage = "";
 //        }
         // TODO #1 取得したデータをSQLiteに保存する処理を記述する
+          MyDBHelper helper = new MyDBHelper(this);
+          helper.insertGenre(keyTitle,keyDescription);
+          dataList = helper.selectGenre();
+          adapter.notifyDataSetChanged();
 
         // TODO #2 描画処理を保存したSQLiteからの読み込みに変更する　
-        dataList.add(new GenreDataItem(keyTitle, keyDescription));
-        adapter.notifyDataSetChanged();
+
             
       }
       break;
@@ -185,8 +187,8 @@ protected void setAdapters() {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            ListView listView = (ListView)parent;
-            GenreDataItem genreDataItem =(GenreDataItem)listView.getItemAtPosition(position);
+            ListView listView = (ListView) parent;
+            GenreDataItem genreDataItem = (GenreDataItem) listView.getItemAtPosition(position);
             Log.v(TAG, genreDataItem.toString());
             startActivity(ListActivity.createIntent(getApplicationContext(), "dpid"));
         }

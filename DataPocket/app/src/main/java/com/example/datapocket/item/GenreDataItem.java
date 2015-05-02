@@ -9,10 +9,10 @@ import android.widget.ImageView;
  */
 public class GenreDataItem {
 
-    // TODO #1 primaryKey保持変数を作成
-	String title;
-	String msg;
-	String image;
+    int primary;    // primaryKey
+	String title;   // GenreTitle
+	String msg;     // GenreMessage
+	String image;   // GenreImagePath
 	  
 	public GenreDataItem(String title, String msg){
 	  this.title = title;
@@ -29,9 +29,9 @@ public class GenreDataItem {
 	}
 
     public String getImage() { return image; }
-	// TODO toStringでprimaryKeyを返すようにする
+
 	public String toString(){
-	  return title + ":" + msg;
+	  return "key" + primary;
 	}
 }
 
