@@ -39,8 +39,9 @@ public class MyDBHelper extends SQLiteOpenHelper{
         //クエリ作成
         StringBuilder buf = new StringBuilder();
         buf.append(" SELECT");
-        buf.append(" "+Key.Columns_G1);
-        //buf.append("   ,"+Key.Columns_G2); 画像の仕様未確定
+        buf.append(" "+Key.Columns_DPID);
+        buf.append(" ,"+Key.Columns_G1);
+        //buf.append("  ,"+Key.Columns_G2); 画像の仕様未確定
         buf.append(" ,"+Key.Columns_G3);
         buf.append(" FROM "+Key.TABLE_NAME);
 
@@ -49,9 +50,9 @@ public class MyDBHelper extends SQLiteOpenHelper{
             Cursor cursor = db.rawQuery(buf.toString(), null);
             while (cursor.moveToNext()){
                 GenreList.add(new GenreDataItem(
-                        1,
-                        cursor.getString(0),
-                        cursor.getString(1)
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2)
                 ));
             }
             Log.v("check :","select文通過");
