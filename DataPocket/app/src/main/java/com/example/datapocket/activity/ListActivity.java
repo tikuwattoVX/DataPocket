@@ -46,6 +46,9 @@ public class ListActivity extends BaseBackgroundActivity {
             mDPid = intent.getStringExtra(Key.Columns_DPID);
         }
         Log.v(TAG, mDPid + "取得しました。");
+        String[] key = mDPid.split("_", -1);
+        int primary = Integer.parseInt(key[1]);
+        Log.v(TAG, primary + "です");
         findViews();
         setAdapters();
 
@@ -74,9 +77,9 @@ public class ListActivity extends BaseBackgroundActivity {
 //      }
 	}
 
-    public static Intent createIntent(Context context, String dpid) {
+    public static Intent createIntent(Context context, String primary) {
         return new Intent(context, ListActivity.class)
-                .putExtra(Key.Columns_DPID,dpid);
+                .putExtra(Key.Columns_DPID, primary);
     }
 
     protected void findViews() {

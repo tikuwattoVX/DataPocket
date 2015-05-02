@@ -49,6 +49,7 @@ public class MyDBHelper extends SQLiteOpenHelper{
             Cursor cursor = db.rawQuery(buf.toString(), null);
             while (cursor.moveToNext()){
                 GenreList.add(new GenreDataItem(
+                        1,
                         cursor.getString(0),
                         cursor.getString(1)
                 ));

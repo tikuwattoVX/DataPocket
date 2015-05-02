@@ -189,8 +189,9 @@ protected void setAdapters() {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             ListView listView = (ListView) parent;
             GenreDataItem genreDataItem = (GenreDataItem) listView.getItemAtPosition(position);
+            String primary = genreDataItem.toString();
             Log.v(TAG, genreDataItem.toString());
-            startActivity(ListActivity.createIntent(getApplicationContext(), "dpid"));
+            startActivity(ListActivity.createIntent(getApplicationContext(), primary));
         }
 
 

@@ -9,17 +9,17 @@ import android.widget.ImageView;
  */
 public class GenreDataItem {
 
-    int primary;    // primaryKey
+    int primary = 1;    // primaryKey
 	String title;   // GenreTitle
 	String msg;     // GenreMessage
 	String image;   // GenreImagePath
 	  
-	public GenreDataItem(String title, String msg){
+	public GenreDataItem(int primary, String title, String msg){
+      this.primary = primary;
 	  this.title = title;
 	  this.msg = msg;
       this.image = image;
 	}
-	  
 	public String getTitle(){
 	  return title;
 	}
@@ -31,7 +31,7 @@ public class GenreDataItem {
     public String getImage() { return image; }
 
 	public String toString(){
-	  return "key" + primary;
+	  return "key_" + primary;
 	}
 }
 
