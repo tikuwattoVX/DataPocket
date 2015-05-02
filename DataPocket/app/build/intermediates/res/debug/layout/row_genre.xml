@@ -34,8 +34,9 @@
 
 		<ImageView 
 		    android:id="@+id/genreImage"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"/>
+            android:layout_gravity="right"
+		    android:layout_width="100dp"
+		    android:layout_height="100dp"/>
 
 	</LinearLayout>
 

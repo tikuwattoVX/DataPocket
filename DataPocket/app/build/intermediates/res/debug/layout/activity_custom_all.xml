@@ -42,7 +42,7 @@ l">
 
         <!-- タイトル入力部 -->
         <EditText
-            android:id="@+id/genreTitleAdd"
+            android:id="@+id/genreTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -67,7 +67,7 @@ l">
                 android:textSize="@dimen/default_size"/>
 
             <!-- タイトル画像（画像） -->
-            <ImageView android:id="@+id/genreImageAdd"
+            <ImageView android:id="@+id/genreImage"
                 style="@style/imageBox"/>
 
         </RelativeLayout>

@@ -12,9 +12,9 @@ public class GenreDataItem {
     // TODO #1 primaryKey保持変数を作成
 	String title;
 	String msg;
-	Bitmap image;
+	String image;
 	  
-	public GenreDataItem(String title, String msg, Bitmap image){
+	public GenreDataItem(String title, String msg){
 	  this.title = title;
 	  this.msg = msg;
       this.image = image;
@@ -28,7 +28,7 @@ public class GenreDataItem {
 	  return msg;
 	}
 
-    public Bitmap getImage() { return image; }
+    public String getImage() { return image; }
 	// TODO toStringでprimaryKeyを返すようにする
 	public String toString(){
 	  return title + ":" + msg;

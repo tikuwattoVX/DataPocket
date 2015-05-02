@@ -27,9 +27,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.provider.MediaStore.Images.Media;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * ジャンル追加画面
@@ -138,9 +142,25 @@ public class AddGenreActivity extends BaseBackgroundActivity {
                 bundle.putString(Key.GENRE_TITLE,title);
                 bundle.putString(Key.GENRE_DESCRIPTION,description);
                 if(mImageAdd.getDrawable() != null) {   // 編集した画像がある場合
-                    Log.v(TAG, "画像あるよ");
                     Bitmap image = ((BitmapDrawable) mImageAdd.getDrawable()).getBitmap();
-                    bundle.putParcelable(Key.GENRE_IMAGE, image);
+                    // TODO 画像ファイル名のフォーマットをカレンダーから取得した値にする。
+//                    String timeStamp = new SimpleDateFormat(
+//                            "yyyy_MM_dd_hh_mm_ss").format(Calendar.getInstance());
+                    String imageName = "saka.png";
+                    File imageFile = new File(getFilesDir(), imageName);
+                    FileOutputStream out;
+                    try {
+                        out = new FileOutputStream(imageFile);
+                        image.compress(Bitmap.CompressFormat.PNG, 0, out);
+                        ///画像をアプリの内部領域に保存
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    bundle.putString(Key.GENRE_IMAGE,
+                            imageFile.getAbsolutePath());
+//                    Log.v(TAG, "画像あるよ");
+//                    Bitmap image = ((BitmapDrawable) mImageAdd.getDrawable()).getBitmap();
+//                    bundle.putParcelable(Key.GENRE_IMAGE, image);
                 }
                 data.putExtras(bundle);
 

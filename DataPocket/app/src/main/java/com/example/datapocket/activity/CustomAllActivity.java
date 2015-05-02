@@ -1,10 +1,21 @@
 package com.example.datapocket.activity;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+
+import com.example.datapocket.utility.Const;
+
+import java.io.InputStream;
 
 /**
  * リストからの編集画面
@@ -12,6 +23,8 @@ import android.view.MenuItem;
  *
  */
 public class CustomAllActivity extends BaseBackgroundActivity {
+
+    private ImageView mGenreImage;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +43,53 @@ public class CustomAllActivity extends BaseBackgroundActivity {
 
     private void findViews() {
         // TODO:取得処理
+        mGenreImage = (ImageView)findViewById(R.id.genreImage);
+        mGenreImage.setOnClickListener(setGenreImageListener);
     }
 
+    /**
+     * GenreTop画面の背景設定用Listener
+     */
+    View.OnClickListener setGenreImageListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+                    Log.v("TAG", "イメージクリックしました。");
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    intent.setAction(Intent.ACTION_PICK);
+                    startActivityForResult(intent, Const.REQUEST_GALLERY);
+        }
+    };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == Const.REQUEST_GALLERY) {
+            Log.v("TAG", "キャッチしました。1");
+            if (resultCode == RESULT_OK) {
+                Log.v("TAG", "キャッチしました。2");
+                putImage(data);
+            }
+            // 画像が選択されていない場合は何もしない。
+        }
+    }
+
+    /**
+     * putImageメソッド
+     * 追加画像の表示を選択したものに切り替えるmメソッド
+     * @param intent
+     */
+    public void putImage(Intent intent) {
+        try {
+            InputStream stream = getContentResolver().openInputStream(intent.getData());
+            Bitmap bmp = BitmapFactory.decodeStream(stream);
+            stream.close();
+
+            mGenreImage.setImageBitmap(bmp);
+        } catch (Exception e) {
+        }
+    }
     /**
      * ActionBarMenu
      * #編集保存ボタン

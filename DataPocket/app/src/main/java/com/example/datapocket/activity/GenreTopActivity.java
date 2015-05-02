@@ -23,9 +23,11 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,8 +67,10 @@ public class GenreTopActivity extends BaseBackgroundActivity {
       findViews();
       setAdapters();
 
-//      MyDBHelper helper = new MyDBHelper(this);
+      MyDBHelper helper = new MyDBHelper(this);
+      helper.isStartFirst();
 //      final SQLiteDatabase db = helper.getWritableDatabase();
+      dataList = helper.selectGenre();
 
       // TODO # サンプルデータベースを表示する処理
       // 初回起動判定及び初回起動処理を行うメソッド
@@ -81,12 +85,12 @@ public class GenreTopActivity extends BaseBackgroundActivity {
       setBackground(R.drawable.background_pocket);
       // TODO ↓２行サンプル表示テスト用。終わったら消す
       Resources r = getResources();
-      Bitmap bmp = BitmapFactory.decodeResource(r, R.drawable.doroid_test);
-      dataList.add(new GenreDataItem(
+//      String bmp = BitmapFactory.decodeResource(r, R.drawable.doroid_test);
+//      dataList.add(new GenreDataItem(
       // TODO #3 サンプルをちゃんとしたものになおす
-              "魚料理",
-              "サーモン料理は、主に魚です。",
-              bmp));
+//              "魚料理",
+//              "サーモン料理は、主に魚です。"
+//              ));
       adapter.notifyDataSetChanged();
       /***************** ここまで ***************/
 
@@ -139,7 +143,7 @@ public class GenreTopActivity extends BaseBackgroundActivity {
 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	super.onActivityResult(requestCode, resultCode, data);
 
-    Bitmap keyImage;
+      String keyImage;
 
     switch (requestCode) {
     case Const.REQUEST_CODE:
@@ -147,16 +151,19 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	Bundle bundle = data.getExtras();
         String keyTitle = bundle.getString(Key.GENRE_TITLE);
         String keyDescription = bundle.getString(Key.GENRE_DESCRIPTION);
-        if(bundle.getParcelable(Key.GENRE_IMAGE) != null) {
-            keyImage = (Bitmap) bundle.getParcelable(Key.GENRE_IMAGE);
-        } else {
-            Log.v(TAG, "空です");
-            keyImage = null;
-        }
+          // TODO if文の条件を修正する
+//        if(bundle.getParcelable(Key.GENRE_IMAGE) != null) {
+            keyImage = bundle.getString(Key.GENRE_IMAGE);
+            Toast.makeText(this, keyImage, Toast.LENGTH_SHORT).show();
+            Log.v(TAG, keyImage);
+//        } else {
+
+            keyImage = "";
+//        }
         // TODO #1 取得したデータをSQLiteに保存する処理を記述する
 
         // TODO #2 描画処理を保存したSQLiteからの読み込みに変更する　
-        dataList.add(new GenreDataItem(keyTitle, keyDescription, keyImage));
+        dataList.add(new GenreDataItem(keyTitle, keyDescription));
         adapter.notifyDataSetChanged();
             
       }
@@ -230,8 +237,9 @@ protected void setAdapters() {
             // TODO 背景画像を設定する処理。うまくいくか確認中
               if(data.getImage() != null) {
                   // TODO
+                  ImageView imageView1 = (ImageView) v.findViewById(R.id.genreImage);
                   Drawable drawable = new BitmapDrawable(getResources(), data.getImage());
-                  mListView.setBackground(drawable);
+                  imageView1.setBackground(drawable);
 //                  layout.setBackground(drawable)
               }
 	        textView1.setText(data.getTitle());
@@ -244,4 +252,4 @@ protected void setAdapters() {
 }
 
 // TODO #8 GenreTopのレイアウトを修正する。margin,paddingなど
-// TODO #9 GenreADDで編集できる背景はリスト個々のものか、画面全体のものか。（仕様決め）
+// TODO #9 rowのレイアウトをRelativeLayoutに変更する。
