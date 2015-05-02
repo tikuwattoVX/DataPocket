@@ -12,6 +12,10 @@ public class Key {
     public static final String GENRE_DESCRIPTION = "genreDescription";
 
     // ListActivity
+    public static final String LIST_TITLE = "listTitle";
+    public static final String LIST_DESCRIPTION = "listDescription";
+    public static final String LIST_IMAGE = "listImage";
+    // ListActivity
     public static final String LIST_START_FIRST = "listStartFirst";
 
     // AddGenreActivity

@@ -59,9 +59,8 @@
                 android:textSize="@dimen/default_size"/>
 
             <!-- タイトル画像（画像） -->
-            <Button android:id="@+id/genreImageAdd"
+            <ImageView android:id="@+id/listImageAdd"
                 android:layout_alignParentRight="true"
-                android:text="@string/image"
                 style="@style/imageBox"/>
 
         </RelativeLayout>

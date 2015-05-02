@@ -8,15 +8,17 @@ import android.widget.ImageView;
  */
 public class ListDataItem {
 
-    String title;
-    String msg;
-    ImageView image;
+    int primary;    // primaryKey
+    String title;   // ListTitle
+    String msg;     // ListMessage
+    String image;   // ListImagePath
 
-    public ListDataItem(String title, String msg){
+    public ListDataItem(int primary, String title, String msg){
+        this.primary = primary;
         this.title = title;
         this.msg = msg;
+        this.image = image;
     }
-
     public String getTitle(){
         return title;
     }
@@ -25,7 +27,9 @@ public class ListDataItem {
         return msg;
     }
 
+    public String getImage() { return image; }
+
     public String toString(){
-        return title + ":" + msg;
+        return "key_" + primary;
     }
 }

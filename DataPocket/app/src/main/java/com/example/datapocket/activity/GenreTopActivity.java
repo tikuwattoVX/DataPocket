@@ -71,38 +71,15 @@ public class GenreTopActivity extends BaseBackgroundActivity {
       helper.isStartFirst();
       dataList = helper.selectGenre();
 
-      // TODO # サンプルデータベースを表示する処理
-      // 初回起動判定及び初回起動処理を行うメソッド
-
-      // helper.isStartFirst();
-
-      // SQLiteのGenreデータ取得処理
-      // dataList = helper.selectGenre();
-      // adapter.notifyDataSetChanged();
-
       /*** ここからテスト用のデータ　本番では消す ***/
       setBackground(R.drawable.background_pocket);
-      // TODO ↓２行サンプル表示テスト用。終わったら消す
-      Resources r = getResources();
-//      String bmp = BitmapFactory.decodeResource(r, R.drawable.doroid_test);
-//      dataList.add(new GenreDataItem(
-      // TODO #3 サンプルをちゃんとしたものになおす
-//              "魚料理",
-//              "サーモン料理は、主に魚です。"
-//              ));
-      adapter.notifyDataSetChanged();
       /***************** ここまで ***************/
 
-      // TODO #4 サンプル保存処理を記述
-//      } else {
-//          Log.v(TAG, "false通りました。");
       // TODO #5 SQLiteから背景データを読み取り描画する。データがなければデフォルトを設定する
 //        int genreBackground = SQLiteから背景データを取得する処理
 //        if(!genreBackground==null) {
 //        setBackground(genreBackground);
 //        }
-      // TODO #6 SQLiteからタイトル、説明、画像を読み込み描画する
-//      }
   }
   
   /**
@@ -156,18 +133,12 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 //            Toast.makeText(this, keyImage, Toast.LENGTH_SHORT).show();
 //            Log.v(TAG, keyImage);
 //        } else {
-
             keyImage = "";
 //        }
-        // TODO #1 取得したデータをSQLiteに保存する処理を記述する
-          MyDBHelper helper = new MyDBHelper(this);
-          helper.insertGenre(keyTitle,keyDescription);
-          dataList = helper.selectGenre();
-          adapter.notifyDataSetChanged();
-
-        // TODO #2 描画処理を保存したSQLiteからの読み込みに変更する　
-
-            
+        MyDBHelper helper = new MyDBHelper(this);
+        helper.insertGenre(keyTitle,keyDescription);
+        dataList = helper.selectGenre();
+        adapter.notifyDataSetChanged();
       }
       break;
  
@@ -239,7 +210,6 @@ protected void setAdapters() {
 //            LinearLayout layout =(LinearLayout)v.findViewById(R.id.rowGenre);
             // TODO 背景画像を設定する処理。うまくいくか確認中
               if(data.getImage() != null) {
-                  // TODO
                   ImageView imageView1 = (ImageView) v.findViewById(R.id.genreImage);
                   Drawable drawable = new BitmapDrawable(getResources(), data.getImage());
                   imageView1.setBackground(drawable);

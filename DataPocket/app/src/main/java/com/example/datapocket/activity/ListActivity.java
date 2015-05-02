@@ -58,13 +58,11 @@ public class ListActivity extends BaseBackgroundActivity {
 //          Log.v(TAG, "true通りました。");
         // サンプルデータベースを表示する処理
         setBackground(R.drawable.background_pocket);
-        dataList.add(new ListDataItem(
-                "マグロとアボカドのタルタル",
-                "４人前"));
-        adapter.notifyDataSetChanged();
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putBoolean(Key.LIST_START_FIRST, false);
-        editor.commit();
+//        dataList.add(new ListDataItem(
+//                1,
+//                "マグロとアボカドのタルタル",
+//                "４人前"));
+//        adapter.notifyDataSetChanged();
         // TODO:サンプル保存処理を記述
 //      } else {
 //          Log.v(TAG, "false通りました。");
