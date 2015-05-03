@@ -19,6 +19,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -50,7 +52,7 @@ import com.example.datapocket.utility.MyDBHelper;
  * #setAdapters()
  * #findViews()
  */
-public class GenreTopActivity extends BaseBackgroundActivity {
+public class GenreTopActivity extends BaseBackgroundActivity implements Animation.AnimationListener{
 
   static final String TAG = "GenreTopActivity";
 
@@ -64,6 +66,7 @@ public class GenreTopActivity extends BaseBackgroundActivity {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_genre_top);
 
+      splashAnimation();
       findViews();
       setAdapters();
 
@@ -81,8 +84,37 @@ public class GenreTopActivity extends BaseBackgroundActivity {
 //        setBackground(genreBackground);
 //        }
   }
-  
-  /**
+
+    /**
+     * splashAnimation
+     * スプラッシュのアニメーション描画処理
+     */
+    private void splashAnimation() {
+        AlphaAnimation alphaanime = new AlphaAnimation(1, 0);
+        alphaanime.setStartOffset(2000);
+        alphaanime.setDuration(1000);
+        alphaanime.setFillAfter(true);
+        alphaanime.setAnimationListener(this);
+        LinearLayout linear = (LinearLayout) findViewById(R.id.splash);
+        linear.startAnimation(alphaanime);
+    }
+
+    @Override
+    public void onAnimationStart(Animation animation) {
+
+    }
+
+    @Override
+    public void onAnimationEnd(Animation animation) {
+
+    }
+
+    @Override
+    public void onAnimationRepeat(Animation animation) {
+
+    }
+
+    /**
    * ActionBarMenu
    * #ジャンル追加ボタン
    */

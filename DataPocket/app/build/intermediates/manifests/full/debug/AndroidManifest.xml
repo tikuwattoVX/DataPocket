@@ -8,6 +8,7 @@
         android:minSdkVersion="15"
         android:targetSdkVersion="21" />
 
+    <!-- インターネットアクセス用 WebViewで仕様 -->
     <uses-permission android:name="android.permission.INTERNET" >
     </uses-permission>
 
@@ -17,7 +18,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.datapocket.activity.SplashActivity"
+            android:name="com.example.datapocket.activity.GenreTopActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.datapocket.activity.GenreTopActivity" />
         <activity android:name="com.example.datapocket.activity.ListActivity" />
         <activity android:name="com.example.datapocket.activity.AddGenreActivity" />
         <activity android:name="com.example.datapocket.activity.AddListActivity" />

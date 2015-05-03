@@ -2,6 +2,7 @@
 <resources>
 	<!-- 基本情報 -->
     <string name="app_name">DataPocket</string>
+    <string name="team_name">sakaboricklink</string>
     <string name="image">画像</string>
     
     <!-- ActionBar用 -->

@@ -202,6 +202,7 @@
     <string name="list_setting_title">リスト情報</string>
     <string name="list_setting_title_hint">タイトルを入力してください。</string>
     <string name="save">保存</string>
+    <string name="team_name">sakaboricklink</string>
     <string name="title">タイトル</string>
     <string name="title_image">タイトル画像</string>
     <!-- From: file:/Users/masakisakamoto/AndroidStudioProjects/DataPocket/app/src/main/res/values/themes.xml -->

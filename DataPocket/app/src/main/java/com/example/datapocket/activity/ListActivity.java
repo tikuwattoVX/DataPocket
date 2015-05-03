@@ -49,6 +49,7 @@ public class ListActivity extends BaseBackgroundActivity {
         String[] key = mDPid.split("_", -1);
         int primary = Integer.parseInt(key[1]);
         Log.v(TAG, primary + "です");
+
         findViews();
         setAdapters();
 
