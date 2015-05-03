@@ -46,8 +46,12 @@ import com.example.datapocket.utility.MyDBHelper;
  *
  * メソッド
  * #onCreate(Bundle savedInstanceState)
- * #onCreateOptionsMenu(Menu menu)
- * #onOptionsItemSelected(MenuItem item)
+ * #splashAnimation()   スプラッシュアニメーションメソッド
+ * #onAnimationStart(Animation animation)
+ * #onAnimationEnd(Animation animation)
+ * #onAnimationRepeat(Animation animation)
+ * #onCreateOptionsMenu(Menu menu)  ActionBarMenu追加メソッド
+ * #onOptionsItemSelected(MenuItem item)    ActionBarMenuClickイベント
  * #onActivityResult(int requestCode, int resultCode, Intent data)
  * #setAdapters()
  * #findViews()

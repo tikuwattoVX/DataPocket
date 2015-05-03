@@ -1,49 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout 
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="150dp">
 
-	<LinearLayout 
-	    android:orientation="horizontal"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content">
+    <TextView
+        style="@style/genre_title"
+        android:id="@+id/genreTitle"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_margin="20dp"/>
 
-	    <LinearLayout 
-	        android:orientation="vertical"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-            android:minHeight="150dp">
+    <TextView
+        style="@style/genre_message"
+        android:id="@+id/genreMessage"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/genreTitle"
+        android:layout_marginLeft="20dp"/>
 
-			<TextView 
-			  style="@style/genre_title"
-			  android:id="@+id/genreTitle" 
-			  android:layout_height="wrap_content" 
-			  android:layout_width="match_parent"
-              android:layout_marginLeft="20dp"/>
-
-			<TextView 
-			  style="@style/genre_message"
-			  android:id="@+id/genreMessage" 
-			  android:layout_height="wrap_content" 
-			  android:layout_width="match_parent"
-              android:layout_marginLeft="20dp"/>
-
-		</LinearLayout>
-
-		<ImageView 
-		    android:id="@+id/genreImage"
-            android:layout_gravity="right"
-		    android:layout_width="100dp"
-		    android:layout_height="100dp"/>
-
-	</LinearLayout>
+    <ImageView
+        android:id="@+id/genreImage"
+        android:layout_margin="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/devider_nomal"
-        android:background="@color/white">
+        android:layout_below="@+id/genreImage"
+        android:background="@color/white"></View>
 
-        </View>
-</LinearLayout><!-- From: file:/Users/masakisakamoto/AndroidStudioProjects/DataPocket/app/src/main/res/layout/row_genre.xml -->
+</RelativeLayout><!-- From: file:/Users/masakisakamoto/AndroidStudioProjects/DataPocket/app/src/main/res/layout/row_genre.xml -->
