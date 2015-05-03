@@ -261,4 +261,3 @@ protected void setAdapters() {
 }
 
 // TODO #8 GenreTopのレイアウトを修正する。margin,paddingなど
-// TODO #9 rowのレイアウトをRelativeLayoutに変更する。

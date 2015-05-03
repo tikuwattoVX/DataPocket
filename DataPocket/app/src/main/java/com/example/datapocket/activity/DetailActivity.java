@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.datapocket.utility.Const;
 import com.example.datapocket.utility.Key;
@@ -16,10 +19,23 @@ import com.example.datapocket.utility.Key;
  */
 public class DetailActivity extends BaseBackgroundActivity {
 
+    public static final String TAG = "DetailActivity";
+
+    private String mDPid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        Intent intent = getIntent();
+        if(intent != null) {
+            mDPid = intent.getStringExtra(Key.Columns_DPID);
+        }
+        Log.v(TAG, mDPid + "取得しました。");
+        String[] key = mDPid.split("_", -1);
+        int primary = Integer.parseInt(key[1]);
+        Log.v(TAG, primary + "です");
 
         findViews();
 
@@ -35,8 +51,16 @@ public class DetailActivity extends BaseBackgroundActivity {
 //                .putExtra(Key.Columns_DPID,dpid);
 //    }
 
-    private void findViews() {
+    public static Intent createIntent(Context context, String primary) {
+        return new Intent(context, DetailActivity.class)
+                .putExtra(Key.Columns_DPID, primary);
+    }
 
+    private void findViews() {
+        TextView detailTitle = (TextView) findViewById(R.id.detail_title);
+        TextView detailHurigana = (TextView) findViewById(R.id.detail_hurigana);
+        TextView detailDescription = (TextView) findViewById(R.id.detail_description);
+        ImageView detailImage = (ImageView) findViewById(R.id.detail_image);
     }
 
     /**

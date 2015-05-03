@@ -53,11 +53,6 @@ public class ListActivity extends BaseBackgroundActivity {
         findViews();
         setAdapters();
 
-        SharedPreferences pref = getSharedPreferences(Key.SYSTEM_VALUE, MODE_PRIVATE);
-        // 初回起動かどうかの判定処理
-//      if (pref.getBoolean("LIST_START_FIRST", true)) {
-//          Log.v(TAG, "true通りました。");
-        // サンプルデータベースを表示する処理
         setBackground(R.drawable.background_pocket);
 //        dataList.add(new ListDataItem(
 //                1,
@@ -65,32 +60,29 @@ public class ListActivity extends BaseBackgroundActivity {
 //                "４人前"));
 //        adapter.notifyDataSetChanged();
         // TODO:サンプル保存処理を記述
-//      } else {
-//          Log.v(TAG, "false通りました。");
         // TODO:背景の設定処理
 //        int listBackground = SQLiteから背景データを取得する処理
 //        if(!listBackground==null) {
 //        setBackground(listBackground);
 //        }
         // TODO:タイトル、説明、画像セット処理
-//      }
 	}
 
     public static Intent createIntent(Context context, String primary) {
         return new Intent(context, ListActivity.class)
                 .putExtra(Key.Columns_DPID, primary);
     }
-
+    // TODO 詳細画面に送るデータ内容が決まり次第変更予定
     protected void findViews() {
         mListView = (ListView) findViewById(R.id.listView2);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent();
-                intent.setClassName(getApplicationContext(), Const.DETAIL_ACTIVITY);
-                startActivity(intent);
-
+                ListView listView = (ListView)parent;
+                ListDataItem listDataItem = (ListDataItem)listView.getItemAtPosition(position);
+                Log.v(TAG, listDataItem.toString());
+                startActivity(DetailActivity.createIntent(getApplicationContext(), listDataItem.toString()));
             }
 
 

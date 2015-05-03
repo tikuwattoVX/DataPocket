@@ -25,7 +25,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 
 /**
- * ジャンル追加画面
+ * リスト追加画面
  * @author masakisakamoto
  * #編集保存機能
  */
