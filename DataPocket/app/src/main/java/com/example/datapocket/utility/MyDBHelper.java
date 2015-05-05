@@ -94,6 +94,35 @@ public class MyDBHelper extends SQLiteOpenHelper{
     }
 
     /****************************************************************************
+     *   メソッド名    delete文 レコード削除(ジャンル画面)
+     *   パラメータ    int primarykey
+     *   機能説明     引数の値(プライマリキー)に対応するレコードの削除
+     *   戻り値       なし
+     ****************************************************************************/
+    public void deleteGenre(int primarykey) {
+        SQLiteDatabase db;
+        db = getWritableDatabase();
+        //delete
+        StringBuilder buf = new StringBuilder();
+        buf.append("DELETE FROM ");
+        buf.append(Key.TABLE_NAME);
+        buf.append(" WHERE ");
+        buf.append(Key.Columns_DPID+"=\'"+primarykey+"\'");
+
+        Log.v("check query:",buf.toString());
+        try {
+            db.execSQL(buf.toString());
+            Log.v("check:","delete通過");
+        } catch (SQLException e) {
+            Log.e("ERROR", e.toString());
+        }
+
+    }
+
+
+
+
+    /****************************************************************************
      *   メソッド名     初回テーブル作成メソッド
      *   機能説明       テーブルがない状態で実行した場合のみ呼び出されるメソッド
      *                  基本的には初回起動時のみ呼び出される
