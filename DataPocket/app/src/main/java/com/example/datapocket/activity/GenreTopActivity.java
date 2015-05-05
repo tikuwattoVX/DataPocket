@@ -199,19 +199,19 @@ public class GenreTopActivity extends BaseBackgroundActivity implements Animatio
 
     protected void findViews() {
         mListView = (ListView) findViewById(R.id.listView1);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                ListView listView = (ListView) parent;
+//                GenreDataItem genreDataItem = (GenreDataItem) listView.getItemAtPosition(position);
+//                String primary = genreDataItem.toString();
+//                Log.v(TAG, genreDataItem.toString());
+//                startActivity(ListActivity.createIntent(getApplicationContext(), primary));
+//            }
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ListView listView = (ListView) parent;
-                GenreDataItem genreDataItem = (GenreDataItem) listView.getItemAtPosition(position);
-                String primary = genreDataItem.toString();
-                Log.v(TAG, genreDataItem.toString());
-                startActivity(ListActivity.createIntent(getApplicationContext(), primary));
-            }
 
-
-        });
+//        });
     }
 
     public class DeletePagerAdapter extends PagerAdapter {
@@ -229,9 +229,19 @@ public class GenreTopActivity extends BaseBackgroundActivity implements Animatio
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             LinearLayout layout = null;
+
             if (position == 0) {
                 // TODO #7 画像も扱えるようにする
                 layout = (LinearLayout) inflater.inflate(R.layout.row_genre, null);
+                LinearLayout linearLayout = (LinearLayout)layout.findViewById(R.id.viewpager1);
+                linearLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.v(TAG, "viewPagerクリック");
+                        Log.v(TAG, item.getTitle() + item.getMsg());
+                        startActivity(ListActivity.createIntent(getApplicationContext(), item.toString()));
+                    }
+                });
                 TextView text1 = (TextView) layout.findViewById(R.id.genreTitle);
                 TextView text2 = (TextView) layout.findViewById(R.id.genreMessage);
                 String title = item.getTitle();
@@ -240,6 +250,15 @@ public class GenreTopActivity extends BaseBackgroundActivity implements Animatio
                 text2.setText(Message);
             } else {
                 layout = (LinearLayout) inflater.inflate(R.layout.row_delete, null);
+                Button deleteButton = (Button)layout.findViewById(R.id.deleteButton);
+                deleteButton.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v){
+                        Log.v(TAG, "デリート");
+                    }
+
+                });
             }
             container.addView(layout);
 

@@ -31,8 +31,7 @@ public class GenreDataItem {
     public String getImage() { return image; }
 
 	public String toString(){
-	  return "key_" + primary + title + msg;
-	}
+	  return "key_" + primary; }
 }
 
 
