@@ -11,17 +11,22 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.text.Layout;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -56,38 +61,42 @@ import com.example.datapocket.utility.MyDBHelper;
  * #setAdapters()
  * #findViews()
  */
-public class GenreTopActivity extends BaseBackgroundActivity implements Animation.AnimationListener{
+public class GenreTopActivity extends BaseBackgroundActivity implements Animation.AnimationListener {
 
-  static final String TAG = "GenreTopActivity";
+    static final String TAG = "GenreTopActivity";
 
-  private ListView mListView;
+    private ListView mListView;
+    private ViewPager mViewPager;
+    private DeletePagerAdapter deleteAdapter;
 
-  static List<GenreDataItem> dataList = new ArrayList<GenreDataItem>();
-  static GenreAdapter adapter;
+    static List<GenreDataItem> dataList = new ArrayList<GenreDataItem>();
+    static GenreAdapter adapter;
 
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-      super.onCreate(savedInstanceState);
-      setContentView(R.layout.activity_genre_top);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_genre_top);
+        // TODO テスト用終わったら消す
+//        dataList.add(new GenreDataItem(1, "坂本", "テスト中です。"));
+        Log.v(TAG, dataList.toString());
+        splashAnimation();
+        findViews();
 
-      splashAnimation();
-      findViews();
-      setAdapters();
+        MyDBHelper helper = new MyDBHelper(this);
+        helper.isStartFirst();
+        dataList = helper.selectGenre();
+        Log.v(TAG, dataList.toString());
+        setAdapters();
+        /*** ここからテスト用のデータ　本番では消す ***/
+        setBackground(R.drawable.background_pocket);
+        /***************** ここまで ***************/
 
-      MyDBHelper helper = new MyDBHelper(this);
-      helper.isStartFirst();
-      dataList = helper.selectGenre();
-
-      /*** ここからテスト用のデータ　本番では消す ***/
-      setBackground(R.drawable.background_pocket);
-      /***************** ここまで ***************/
-
-      // TODO #5 SQLiteから背景データを読み取り描画する。データがなければデフォルトを設定する
+        // TODO #5 SQLiteから背景データを読み取り描画する。データがなければデフォルトを設定する
 //        int genreBackground = SQLiteから背景データを取得する処理
 //        if(!genreBackground==null) {
 //        setBackground(genreBackground);
 //        }
-  }
+    }
 
     /**
      * splashAnimation
@@ -119,145 +128,190 @@ public class GenreTopActivity extends BaseBackgroundActivity implements Animatio
     }
 
     /**
-   * ActionBarMenu
-   * #ジャンル追加ボタン
-   */
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-	  MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.main, menu);
-	  	return true;
-  }
+     * ActionBarMenu
+     * #ジャンル追加ボタン
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
 
-  /**
-   * ActionBarClickイベント
-   * #ジャンル追加ボタン
-   */
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-	  switch(item.getItemId()) {
-	  	case R.id.genre_add:
-	  		Intent intent = new Intent();
-	  		intent.setClassName(getApplicationContext(), Const.ADD_GENRE_ACTIVITY);
-	  		startActivityForResult(intent, Const.REQUEST_CODE);
-		default:
-			return super.onOptionsItemSelected(item);
-	  }
-	
-  }
+    /**
+     * ActionBarClickイベント
+     * #ジャンル追加ボタン
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.genre_add:
+                Intent intent = new Intent();
+                intent.setClassName(getApplicationContext(), Const.ADD_GENRE_ACTIVITY);
+                startActivityForResult(intent, Const.REQUEST_CODE);
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
-  /**
-   * AddGenreActivityがfinishにより破棄された際に呼ばれるメソッド。
-   * #編集データの回収と保存
-   * #編集内容を画面に表示
-   */
-  @Override
-protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	super.onActivityResult(requestCode, resultCode, data);
+    /**
+     * AddGenreActivityがfinishにより破棄された際に呼ばれるメソッド。
+     * #編集データの回収と保存
+     * #編集内容を画面に表示
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-      String keyImage;
+        String keyImage;
 
-    switch (requestCode) {
-    case Const.REQUEST_CODE:
-      if (resultCode == RESULT_OK) {
-    	Bundle bundle = data.getExtras();
-        String keyTitle = bundle.getString(Key.GENRE_TITLE);
-        String keyDescription = bundle.getString(Key.GENRE_DESCRIPTION);
-          // TODO if文の条件を修正する
+        switch (requestCode) {
+            case Const.REQUEST_CODE:
+                if (resultCode == RESULT_OK) {
+                    Bundle bundle = data.getExtras();
+                    String keyTitle = bundle.getString(Key.GENRE_TITLE);
+                    String keyDescription = bundle.getString(Key.GENRE_DESCRIPTION);
+                    // TODO if文の条件を修正する
 //        if(bundle.getParcelable(Key.GENRE_IMAGE) != null) {
 //            keyImage = bundle.getString(Key.GENRE_IMAGE);
 //            Toast.makeText(this, keyImage, Toast.LENGTH_SHORT).show();
 //            Log.v(TAG, keyImage);
 //        } else {
-            keyImage = "";
+                    keyImage = "";
 //        }
-        MyDBHelper helper = new MyDBHelper(this);
-        helper.insertGenre(keyTitle,keyDescription);
-        dataList = helper.selectGenre();
-        adapter.notifyDataSetChanged();
-      }
-      break;
- 
-    default:
-      break;
+                    MyDBHelper helper = new MyDBHelper(this);
+                    helper.insertGenre(keyTitle, keyDescription);
+                    dataList = helper.selectGenre();
+                    adapter.notifyDataSetChanged();
+                }
+                break;
+
+            default:
+                break;
+        }
     }
-}
 
-protected void setAdapters() {
-	  adapter = new GenreAdapter();
-	  mListView.setAdapter(adapter);
-  }
-  
-  protected void findViews(){
-    mListView = (ListView)findViewById(R.id.listView1);
-    mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    protected void setAdapters() {
+        adapter = new GenreAdapter(this);
+//        adapter = new GenreAdapter(this, R.layout.row, dataList);
+        mListView.setAdapter(adapter);
+    }
 
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            ListView listView = (ListView) parent;
-            GenreDataItem genreDataItem = (GenreDataItem) listView.getItemAtPosition(position);
-            String primary = genreDataItem.toString();
-            Log.v(TAG, genreDataItem.toString());
-            startActivity(ListActivity.createIntent(getApplicationContext(), primary));
+    protected void findViews() {
+        mListView = (ListView) findViewById(R.id.listView1);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ListView listView = (ListView) parent;
+                GenreDataItem genreDataItem = (GenreDataItem) listView.getItemAtPosition(position);
+                String primary = genreDataItem.toString();
+                Log.v(TAG, genreDataItem.toString());
+                startActivity(ListActivity.createIntent(getApplicationContext(), primary));
+            }
+
+
+        });
+    }
+
+    public class DeletePagerAdapter extends PagerAdapter {
+
+        private LayoutInflater inflater;
+        private static final int PAGE_NUM = 2;
+        private GenreDataItem item;
+
+        public DeletePagerAdapter(Context context, GenreDataItem item) {
+            super();
+            inflater = LayoutInflater.from(context);
+            this.item = item;
         }
 
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            LinearLayout layout = null;
+            if (position == 0) {
+                // TODO #7 画像も扱えるようにする
+                layout = (LinearLayout) inflater.inflate(R.layout.row_genre, null);
+                TextView text1 = (TextView) layout.findViewById(R.id.genreTitle);
+                TextView text2 = (TextView) layout.findViewById(R.id.genreMessage);
+                String title = item.getTitle();
+                String Message = item.getMsg();
+                text1.setText(title);
+                text2.setText(Message);
+            } else {
+                layout = (LinearLayout) inflater.inflate(R.layout.row_delete, null);
+            }
+            container.addView(layout);
 
-    });
-  }
-  
-  private class GenreAdapter extends BaseAdapter {
+            return layout;
+        }
 
-	@Override
-	public int getCount() {
-		return dataList.size();
-	}
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            ((ViewPager) container).removeView((View) object);
+        }
 
-	@Override
-	public Object getItem(int position) {
-		return dataList.get(position);
-	}
+        @Override
+        public int getCount() {
+            return PAGE_NUM;
+        }
 
-	@Override
-	public long getItemId(int position) {
-		return position;
-	}
+        @Override
+        public boolean isViewFromObject(View view, Object obj) {
+            return view.equals(obj);
+        }
+    }
 
-	@Override
-	public View getView(
-		int position,
-		View convertView,
-		ViewGroup parent) {
-        // TODO #7 画像も扱えるようにする
-		
-		TextView textView1;
-		TextView textView2;
-		View v = convertView;
-		
-		if(v==null){
-	        LayoutInflater inflater = 
-	          (LayoutInflater)
-	            getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	        v = inflater.inflate(R.layout.row_genre, null);
-	      }
-	      GenreDataItem data = (GenreDataItem)getItem(position);
-	      if(data != null){
-	        textView1 = (TextView) v.findViewById(R.id.genreTitle);
-	        textView2 = (TextView) v.findViewById(R.id.genreMessage);
-//            LinearLayout layout =(LinearLayout)v.findViewById(R.id.rowGenre);
-            // TODO 背景画像を設定する処理。うまくいくか確認中
-              if(data.getImage() != null) {
-                  ImageView imageView1 = (ImageView) v.findViewById(R.id.genreImage);
-                  Drawable drawable = new BitmapDrawable(getResources(), data.getImage());
-                  imageView1.setBackground(drawable);
-//                  layout.setBackground(drawable)
-              }
-	        textView1.setText(data.getTitle());
-	        textView2.setText(data.getMsg());
-	      }
-	      return v;
-	}
-	  
-  }
+    private class GenreAdapter extends BaseAdapter {
+
+        private LayoutInflater inflater = null;
+        private static final float BUTTON_WIDTH_DP = 70f;
+        private int margin;
+
+        public GenreAdapter(Context context) {
+            super();
+            inflater = LayoutInflater.from(context);
+
+            //ページ2のRelativeLayoutの幅を計算してmarginへ格納する。
+            float density = getApplicationContext().getResources().getDisplayMetrics().density;
+            int buttonWidthPX = (int) (BUTTON_WIDTH_DP * density + 0.5f);
+
+            WindowManager wm = (WindowManager) getApplicationContext().getSystemService(getApplicationContext().WINDOW_SERVICE);
+            Display dp = wm.getDefaultDisplay();
+            margin = dp.getWidth() - buttonWidthPX;
+        }
+
+        @Override
+        public int getCount() {
+            return dataList.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return dataList.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            if (convertView == null) {
+                convertView = inflater.inflate(R.layout.row, null);
+            }
+
+            ViewPager viewPager = (ViewPager) convertView.findViewById(R.id.viewpager);
+            viewPager.setPageMargin(-margin);
+            deleteAdapter = new DeletePagerAdapter(getApplicationContext(), (GenreDataItem) getItem(position));
+            viewPager.setAdapter(deleteAdapter);
+
+            return convertView;
+
+        }
+    }
 }
 
 // TODO #8 GenreTopのレイアウトを修正する。margin,paddingなど

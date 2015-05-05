@@ -1294,4 +1294,12 @@
         <item name="android:layout_margin">20dp</item>
         <item name="android:background">@drawable/image_window</item>
     </style>
+    <style name="list_message">
+        <item name="android:textSize">@dimen/default_size</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="list_title">
+        <item name="android:textSize">@dimen/default_size</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 </resources>
