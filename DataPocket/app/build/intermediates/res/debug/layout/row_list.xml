@@ -1,35 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/viewpager2"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:minHeight="50dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        style="@style/list_title"
-        android:id="@+id/listTitle"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_margin="20dp"/>
-
-    <TextView
-        style="@style/list_message"
-        android:id="@+id/listMessage"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_below="@+id/genreTitle"
-        android:layout_marginLeft="20dp"/>
-
-    <ImageView
-        android:id="@+id/listImage"
-        android:layout_margin="20dp"
-        android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <View
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/devider_nomal"
-        android:layout_below="@+id/listImage"
-        android:background="@color/white"></View>
+        android:layout_height="70dp">
 
-</RelativeLayout><!-- From: file:/Users/masakisakamoto/AndroidStudioProjects/DataPocket/app/src/main/res/layout/row_list.xml -->
+        <TextView
+            style="@style/list_title"
+            android:id="@+id/listTitle"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_margin="20dp"/>
+
+        <TextView
+            style="@style/list_message"
+            android:id="@+id/listMessage"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/genreTitle"
+            android:layout_marginLeft="20dp"/>
+
+        <ImageView
+            android:id="@+id/listImage"
+            android:layout_margin="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+</LinearLayout><!-- From: file:/Users/masakisakamoto/AndroidStudioProjects/DataPocket/app/src/main/res/layout/row_list.xml -->

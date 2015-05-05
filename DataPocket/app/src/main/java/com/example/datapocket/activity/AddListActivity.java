@@ -145,8 +145,8 @@ public class AddListActivity extends BaseBackgroundActivity {
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
                         }
-                        bundle.putString(Key.LIST_IMAGE,
-                                imageFile.getAbsolutePath());
+//                        bundle.putString(Key.LIST_IMAGE,
+//                                imageFile.getAbsolutePath());
 //                    Log.v(TAG, "画像あるよ");
 //                    Bitmap image = ((BitmapDrawable) mImageAdd.getDrawable()).getBitmap();
 //                    bundle.putParcelable(Key.GENRE_IMAGE, image);

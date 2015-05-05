@@ -8,10 +8,10 @@ import android.widget.ImageView;
  */
 public class ListDataItem {
 
-    int primary;    // primaryKey
-    String title;   // ListTitle
-    String msg;     // ListMessage
-    String image;   // ListImagePath
+    private int primary;    // primaryKey
+    private String title;   // ListTitle
+    private String msg;     // ListMessage
+    private String image;   // ListImagePath
 
     public ListDataItem(int primary, String title, String msg){
         this.primary = primary;

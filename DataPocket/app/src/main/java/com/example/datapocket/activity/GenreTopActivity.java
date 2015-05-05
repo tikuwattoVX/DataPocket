@@ -1,19 +1,10 @@
 package com.example.datapocket.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.text.Layout;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -22,16 +13,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -325,7 +311,7 @@ public class GenreTopActivity extends BaseBackgroundActivity implements Animatio
         public View getView(int position, View convertView, ViewGroup parent) {
 
             if (convertView == null) {
-                convertView = inflater.inflate(R.layout.row, null);
+                convertView = inflater.inflate(R.layout.row_viewpager_genre, null);
             }
 
             ViewPager viewPager = (ViewPager) convertView.findViewById(R.id.viewpager);

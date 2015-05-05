@@ -9,10 +9,10 @@ import android.widget.ImageView;
  */
 public class GenreDataItem {
 
-    int primary;    // primaryKey
-	String title;   // GenreTitle
-	String msg;     // GenreMessage
-	String image;   // GenreImagePath
+    private int primary;    // primaryKey
+	private String title;   // GenreTitle
+	private String msg;     // GenreMessage
+	private String image;   // GenreImagePath
 	  
 	public GenreDataItem(int primary, String title, String msg){
       this.primary = primary;

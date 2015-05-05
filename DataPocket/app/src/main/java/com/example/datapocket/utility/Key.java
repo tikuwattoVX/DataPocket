@@ -10,17 +10,26 @@ public class Key {
     public static final String GENRE_START_FIRST = "genreStartFirst";
     public static final String GENRE_TITLE = "genreTitle";
     public static final String GENRE_DESCRIPTION = "genreDescription";
+    public static final String GENRE_PRIMARY = "genrePrimary";
 
     // ListActivity
     public static final String LIST_START_FIRST = "listStartFirst";
+    public static final String LIST_PRIMARY = "listPrimary";
 
     // AddGenreActivity
     public static final String GENRE_IMAGE = "genreImage";
+
+    public static final String LIST_TITLE = "listTitle";
+    public static final String LIST_DESCRIPTION = "listDescription";
+    public static final String LIST_IMAGE = "listImage";
+
 
     //テーブル名
     public static final String TABLE_NAME = "DataPocket";
     //プライマリキー
     public static final String GenreID = "gID";
+    public static final String Columns_DPID = "DPID";
+
     //ジャンル画面
     public static final String Columns_G1 = "gTitle";
     public static final String Columns_G2 = "gPicture";

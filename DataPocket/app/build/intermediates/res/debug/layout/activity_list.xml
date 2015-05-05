@@ -10,7 +10,8 @@
     android:id="@+id/listView2" 
     android:layout_width="match_parent" 
     android:layout_weight="1"
-    android:divider="@null"></ListView>
+    android:divider="@color/white"
+    android:dividerHeight="2dp"></ListView>
 
 </LinearLayout>
 <!-- From: file:/Users/masakisakamoto/AndroidStudioProjects/DataPocket/app/src/main/res/layout/activity_list.xml -->

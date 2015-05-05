@@ -21,7 +21,7 @@ public class DetailActivity extends BaseBackgroundActivity {
 
     public static final String TAG = "DetailActivity";
 
-    private String mDPid;
+    private String mLid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +30,10 @@ public class DetailActivity extends BaseBackgroundActivity {
 
         Intent intent = getIntent();
         if(intent != null) {
-            mDPid = intent.getStringExtra(Key.Columns_DPID);
+            mLid = intent.getStringExtra(Key.LIST_PRIMARY);
         }
-        Log.v(TAG, mDPid + "取得しました。");
-        String[] key = mDPid.split("_", -1);
+        Log.v(TAG, mLid + "取得しました。");
+        String[] key = mLid.split("_", -1);
         int primary = Integer.parseInt(key[1]);
         Log.v(TAG, primary + "です");
 
@@ -53,7 +53,7 @@ public class DetailActivity extends BaseBackgroundActivity {
 
     public static Intent createIntent(Context context, String primary) {
         return new Intent(context, DetailActivity.class)
-                .putExtra(Key.Columns_DPID, primary);
+                .putExtra(Key.LIST_PRIMARY, primary);
     }
 
     private void findViews() {
