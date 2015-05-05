@@ -20,4 +20,13 @@ public class Const {
 
     // Intent用
     public static final int REQUEST_GALLERY = 1002;
+
+    // TODO それぞれの画面のタイトル
+    public static final String GENRE_TOP_ACTIVITY_TITLE = "";
+    public static final String ADD_GENRE_ACTIVITY_TITLE = "";
+    public static final String ADD_LIST_ACTIVITY_TITLE = "";
+    public static final String LIST_ACTIVITY_TITLE = "";
+    public static final String CUSTOM_ALL_ACTIVITY_TITLE = "";
+    public static final String CUSTOM_LIST_ACTIVITY_TITLE = "";
+    public static final String DETAIL_ACTIVITY_TITLE = "";
 }

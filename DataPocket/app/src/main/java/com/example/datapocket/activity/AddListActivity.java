@@ -42,6 +42,8 @@ public class AddListActivity extends BaseBackgroundActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_list);
 
+        getActionBar().setTitle("リスト追加");
+
         findViews();
 
         // TODO:背景の設定処理

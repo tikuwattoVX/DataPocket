@@ -28,6 +28,8 @@ public class DetailActivity extends BaseBackgroundActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        getActionBar().setTitle("詳細データ");
+
         Intent intent = getIntent();
         if(intent != null) {
             mLid = intent.getStringExtra(Key.LIST_PRIMARY);

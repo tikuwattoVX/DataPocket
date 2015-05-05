@@ -15,6 +15,8 @@ public class CustomListActivity extends BaseBackgroundActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_list);
 
+        getActionBar().setTitle("リスト編集");
+
         findViews();
 
         // TODO:背景の設定処理

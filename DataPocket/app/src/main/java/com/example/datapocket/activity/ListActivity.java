@@ -45,6 +45,7 @@ public class ListActivity extends BaseBackgroundActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list);
 
+        getActionBar().setTitle("リスト一覧");
         // TODO getIntent処理
         Intent intent = getIntent();
         if(intent != null) {
@@ -64,11 +65,6 @@ public class ListActivity extends BaseBackgroundActivity {
 
         setAdapters();
         setBackground(R.drawable.background_pocket);
-//        dataList.add(new ListDataItem(
-//                1,
-//                "マグロとアボカドのタルタル",
-//                "４人前"));
-//        adapter.notifyDataSetChanged();
         // TODO:サンプル保存処理を記述
         // TODO:背景の設定処理
 //        int listBackground = SQLiteから背景データを取得する処理
@@ -85,18 +81,6 @@ public class ListActivity extends BaseBackgroundActivity {
     // TODO 詳細画面に送るデータ内容が決まり次第変更予定
     protected void findViews() {
         mListView = (ListView) findViewById(R.id.listView2);
-//        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                ListView listView = (ListView)parent;
-//                ListDataItem listDataItem = (ListDataItem)listView.getItemAtPosition(position);
-//                Log.v(TAG, listDataItem.toString());
-//                startActivity(DetailActivity.createIntent(getApplicationContext(), listDataItem.toString()));
-//            }
-//
-//
-//        });
     }
 
     protected void setAdapters() {
@@ -178,56 +162,6 @@ public class ListActivity extends BaseBackgroundActivity {
         }
     }
 
-    /**
-     * ListAdapterClass
-     * メソッド
-     * #getCount()
-     * #getItem(int position)
-     * #getItemId(int position)
-     * #getView(int position, View convertView, ViewGroup parent)
-     */
-//     private class ListAdapter extends BaseAdapter {
-//
-//         @Override
-//         public int getCount() {
-//             return dataList.size();
-//         }
-//
-//         @Override
-//         public Object getItem(int position) {
-//             return dataList.get(position);
-//         }
-//
-//         @Override
-//         public long getItemId(int position) {
-//             return position;
-//         }
-//
-//         @Override
-//         public View getView(int position, View convertView, ViewGroup parent) {
-//
-//                 TextView textView1;
-//                 TextView textView2;
-//                 View v = convertView;
-//
-//                 if(v==null){
-//                     LayoutInflater inflater =
-//                             (LayoutInflater)
-//                                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                     v = inflater.inflate(R.layout.row_list, null);
-//                 }
-//                 ListDataItem data = (ListDataItem)getItem(position);
-//                 if(data != null){
-//                     textView1 = (TextView) v.findViewById(R.id.listTitle);
-//                     textView2 = (TextView) v.findViewById(R.id.listMessage);
-//
-//                     textView1.setText(data.getTitle());
-//                     textView2.setText(data.getMsg());
-//                 }
-//                 return v;
-//             }
-//     }
-
     public class DeletePagerAdapter extends PagerAdapter {
 
         private LayoutInflater inflater;
@@ -302,6 +236,14 @@ public class ListActivity extends BaseBackgroundActivity {
         }
     }
 
+    /**
+     * ListAdapterClass
+     * メソッド
+     * #getCount()
+     * #getItem(int position)
+     * #getItemId(int position)
+     * #getView(int position, View convertView, ViewGroup parent)
+     */
     private class ListAdapter extends BaseAdapter {
 
         private LayoutInflater inflater = null;

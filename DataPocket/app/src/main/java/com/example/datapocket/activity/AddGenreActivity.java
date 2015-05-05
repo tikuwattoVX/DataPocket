@@ -53,6 +53,8 @@ public class AddGenreActivity extends BaseBackgroundActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_genre);
 
+        getActionBar().setTitle("データベース追加");
+
 		findViews();
 
      // TODO:背景の設定処理

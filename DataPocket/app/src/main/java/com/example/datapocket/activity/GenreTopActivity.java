@@ -178,25 +178,11 @@ public class GenreTopActivity extends BaseBackgroundActivity implements Animatio
 
     protected void setAdapters() {
         adapter = new GenreAdapter(this);
-//        adapter = new GenreAdapter(this, R.layout.row, dataList);
         mListView.setAdapter(adapter);
     }
 
     protected void findViews() {
         mListView = (ListView) findViewById(R.id.listView1);
-//        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                ListView listView = (ListView) parent;
-//                GenreDataItem genreDataItem = (GenreDataItem) listView.getItemAtPosition(position);
-//                String primary = genreDataItem.toString();
-//                Log.v(TAG, genreDataItem.toString());
-//                startActivity(ListActivity.createIntent(getApplicationContext(), primary));
-//            }
-
-
-//        });
     }
 
     public class DeletePagerAdapter extends PagerAdapter {

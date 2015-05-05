@@ -16,7 +16,7 @@
         android:id="@+id/deleteButton"
         android:layout_width="70dp"
         android:layout_height="match_parent"
-        android:background="#cc2828"
+        android:background="@drawable/delete_button"
         android:text="削除"
         android:textColor="#ffffff"/>
 
