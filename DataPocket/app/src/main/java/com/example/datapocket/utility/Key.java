@@ -12,10 +12,6 @@ public class Key {
     public static final String GENRE_DESCRIPTION = "genreDescription";
 
     // ListActivity
-    public static final String LIST_TITLE = "listTitle";
-    public static final String LIST_DESCRIPTION = "listDescription";
-    public static final String LIST_IMAGE = "listImage";
-    // ListActivity
     public static final String LIST_START_FIRST = "listStartFirst";
 
     // AddGenreActivity
@@ -24,12 +20,14 @@ public class Key {
     //テーブル名
     public static final String TABLE_NAME = "DataPocket";
     //プライマリキー
-    public static final String Columns_DPID = "DPID";
+    public static final String GenreID = "gID";
     //ジャンル画面
     public static final String Columns_G1 = "gTitle";
     public static final String Columns_G2 = "gPicture";
     public static final String Columns_G3 = "gDescription";
-    //詳細画面
+    public static final String Columns_G4 = "gListKey";//リストテーブルへのキー
+    //リスト & 詳細画面
+    public static final String ListID = "dListKey";
     public static final String Columns_D1 = "dHurigana";
     public static final String Columns_D2 = "dTittle";
     public static final String Columns_D3 = "dPicture";

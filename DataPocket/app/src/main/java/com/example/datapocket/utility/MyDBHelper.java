@@ -1,6 +1,7 @@
 package com.example.datapocket.utility;
 
 import com.example.datapocket.item.GenreDataItem;
+import com.example.datapocket.item.ListDataItem;
 import com.example.datapocket.utility.Key;
 import android.content.Context;
 import android.database.Cursor;
@@ -14,14 +15,14 @@ import java.util.List;
 import java.util.ArrayList;
 
 /*
-*拡張済みデータベースヘルパークラス
-* 基本的にはインスタンス化->APIコールで処理を実行
-* select 1API
-* insert 1API
-* delete 2API
+* 拡張済みデータベースヘルパークラス
+*   基本的にはインスタンス化->APIコールで処理を実行
+*   select 1API
+*   insert 1API
+*   delete 2API
 */
 public class MyDBHelper extends SQLiteOpenHelper{
-    private boolean FirstStart_flg = false;         //初回起動判定フラグ、最初はfalseで初期化
+    private boolean FirstStart_flg = false;         //初回起動判定フラグ、最初はfalse(OFF)で初期化
     private final static String DBName = "DPDB";    //データベース名
     private final static int DBVersion = 1;         //データベースバージョン
 
@@ -43,7 +44,7 @@ public class MyDBHelper extends SQLiteOpenHelper{
         //クエリ作成
         StringBuilder buf = new StringBuilder();
         buf.append(" SELECT");
-        buf.append(" "+Key.Columns_DPID);
+        buf.append(" "+Key.GenreID);
         buf.append(" ,"+Key.Columns_G1);
         //buf.append("  ,"+Key.Columns_G2); 画像の仕様未確定
         buf.append(" ,"+Key.Columns_G3);
@@ -64,6 +65,42 @@ public class MyDBHelper extends SQLiteOpenHelper{
             db.close();
         }
         return GenreList ;
+    }
+
+    /****************************************************************************
+     *   メソッド名     select文 リスト表示メソッド
+     *   パラメータ     int primarykey
+     *   機能説明       ジャンル画面用テーブルデータ
+     *   戻り値         リスト型 ジャンル画面用データ
+     ****************************************************************************/
+    public List<ListDataItem> selectList(){
+        List<ListDataItem> ListList = new ArrayList<ListDataItem>();
+        SQLiteDatabase db;
+        db = getReadableDatabase();
+        //クエリ作成
+        StringBuilder buf = new StringBuilder();
+        buf.append(" SELECT");
+        buf.append(" "+Key.GenreID);
+        buf.append(" ,"+Key.Columns_D1);
+        //buf.append("  ,"+Key.Columns_D2); 画像の仕様未確定
+        buf.append(" ,"+Key.Columns_D3);
+        buf.append(" FROM "+Key.TABLE_NAME);
+
+        Log.v("check query:",buf.toString());
+        try{
+            Cursor cursor = db.rawQuery(buf.toString(), null);
+            while (cursor.moveToNext()){
+                ListList.add(new ListDataItem(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2)
+                ));
+            }
+            Log.v("check :","select文通過");
+        } finally{
+            db.close();
+        }
+        return ListList ;
     }
 
     /****************************************************************************
@@ -113,7 +150,7 @@ public class MyDBHelper extends SQLiteOpenHelper{
         buf.append("DELETE FROM ");
         buf.append(Key.TABLE_NAME);
         buf.append(" WHERE ");
-        buf.append(Key.Columns_DPID+"=\'"+primarykey+"\'");
+        buf.append(Key.GenreID+"=\'"+primarykey+"\'");
 
         Log.v("check query:",buf.toString());
         try {
@@ -174,7 +211,7 @@ public class MyDBHelper extends SQLiteOpenHelper{
         StringBuilder buf = new StringBuilder();
         buf.append("create table "+ Key.TABLE_NAME);
         buf.append("(");
-        buf.append(Key.Columns_DPID+" integer primary key autoincrement");
+        buf.append(Key.GenreID+" integer primary key autoincrement");
         //ジャンル画面カラム
         buf.append(" ,"+Key.Columns_G1+" text");
 //      buf.append(" ,"+Key.Columns_G2+" ");       //画像の仕様未確定
@@ -193,8 +230,6 @@ public class MyDBHelper extends SQLiteOpenHelper{
             Log.v("check:","初回テーブル作成API通過");
         } catch (SQLException e) {
             Log.e("ERROR", e.toString());
-        } finally {
-            db.close();
         }
         FirstStart_flg = true; //初回起動フラグを立てる
     }
