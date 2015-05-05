@@ -14,7 +14,11 @@ import java.util.List;
 import java.util.ArrayList;
 
 /*
-*データベースヘルパークラス
+*拡張済みデータベースヘルパークラス
+* 基本的にはインスタンス化->APIコールで処理を実行
+* select 1API
+* insert 1API
+* delete 2API
 */
 public class MyDBHelper extends SQLiteOpenHelper{
     private boolean FirstStart_flg = false;         //初回起動判定フラグ、最初はfalseで初期化
@@ -56,7 +60,7 @@ public class MyDBHelper extends SQLiteOpenHelper{
                 ));
             }
             Log.v("check :","select文通過");
-        }finally{
+        } finally{
             db.close();
         }
         return GenreList ;
@@ -90,11 +94,13 @@ public class MyDBHelper extends SQLiteOpenHelper{
             Log.v("check:","insert通過");
         } catch (SQLException e) {
             Log.e("ERROR", e.toString());
+        } finally {
+            db.close();
         }
     }
 
     /****************************************************************************
-     *   メソッド名    delete文 レコード削除(ジャンル画面)
+     *   メソッド名    delete文 1レコード削除(ジャンル画面)
      *   パラメータ    int primarykey
      *   機能説明     引数の値(プライマリキー)に対応するレコードの削除
      *   戻り値       なし
@@ -115,11 +121,44 @@ public class MyDBHelper extends SQLiteOpenHelper{
             Log.v("check:","delete通過");
         } catch (SQLException e) {
             Log.e("ERROR", e.toString());
+        } finally {
+            db.close();
         }
+    }
 
+    /****************************************************************************
+     *   メソッド名    delete文 テーブル削除
+     *   パラメータ    void
+     *   機能説明     ・テーブルの削除(全レコードの削除)
+     *                ・初回起動APIコール
+     *   戻り値       なし
+     ****************************************************************************/
+    public void deleteALL(int primarykey) {
+        SQLiteDatabase db;
+        db = getWritableDatabase();
+        //delete
+        StringBuilder buf = new StringBuilder();
+        buf.append("DELETE FROM ");
+        buf.append(Key.TABLE_NAME);
+
+        Log.v("check query:",buf.toString());
+        try {
+            db.execSQL(buf.toString());
+            Log.v("check:","delete通過");
+        } catch (SQLException e) {
+            Log.e("ERROR", e.toString());
+        } finally {
+            db.close();
+        }
+        //フラグON -> 直接初回起動確認APIをコールする処理に変更
+        //FirstStart_flg = true; //初回起動フラグを立てる
+        isStartFirst();
     }
 
 
+/****************************************************************************************************
+ * 以下初回起動時API
+ ****************************************************************************************************/
 
 
     /****************************************************************************
@@ -146,10 +185,18 @@ public class MyDBHelper extends SQLiteOpenHelper{
 //      buf.append(" ,"+Key.Columns_D3+" ");        //画像の仕様未確定
         buf.append(" ,"+Key.Columns_D4+" text");
         buf.append(")");
+
+        Log.v("check query:",buf.toString());
         //クエリ実行
-        db.execSQL(buf.toString());
+        try {
+            db.execSQL(buf.toString());
+            Log.v("check:","初回テーブル作成API通過");
+        } catch (SQLException e) {
+            Log.e("ERROR", e.toString());
+        } finally {
+            db.close();
+        }
         FirstStart_flg = true; //初回起動フラグを立てる
-        Log.v("check","table作成通過");
     }
 
     /****************************************************************************
@@ -160,13 +207,11 @@ public class MyDBHelper extends SQLiteOpenHelper{
      *                false DB作成済み
      ****************************************************************************/
     public void isStartFirst(){
-
         SQLiteDatabase db;
+        //テーブルの有無確認 無ければフラグがONになる
         db = getWritableDatabase();
-
         if(FirstStart_flg){
             //初回起動の場合のみサンプルレコード作成処理
-
             //insert
             StringBuilder buf = new StringBuilder();
             buf.append("INSERT INTO ");
@@ -193,18 +238,14 @@ public class MyDBHelper extends SQLiteOpenHelper{
                 Log.v("check:","初回サンプル用insert通過");
             } catch (SQLException e) {
                 Log.e("ERROR", e.toString());
+            } finally {
+                db.close();
             }
-
-
-
             FirstStart_flg = false; //作成後はフラグを折る
         }
     }
 
-
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // TODO Auto-generated method stub
-    }
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
 
 }
