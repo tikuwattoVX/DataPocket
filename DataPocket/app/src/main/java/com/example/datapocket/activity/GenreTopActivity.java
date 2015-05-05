@@ -22,6 +22,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -76,9 +77,7 @@ public class GenreTopActivity extends BaseBackgroundActivity implements Animatio
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_genre_top);
-        // TODO テスト用終わったら消す
-//        dataList.add(new GenreDataItem(1, "坂本", "テスト中です。"));
-        Log.v(TAG, dataList.toString());
+
         splashAnimation();
         findViews();
 
@@ -219,9 +218,11 @@ public class GenreTopActivity extends BaseBackgroundActivity implements Animatio
         private LayoutInflater inflater;
         private static final int PAGE_NUM = 2;
         private GenreDataItem item;
+        private Context context;
 
         public DeletePagerAdapter(Context context, GenreDataItem item) {
             super();
+            this.context = context;
             inflater = LayoutInflater.from(context);
             this.item = item;
         }
@@ -237,7 +238,6 @@ public class GenreTopActivity extends BaseBackgroundActivity implements Animatio
                 linearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Log.v(TAG, "viewPagerクリック");
                         Log.v(TAG, item.getTitle() + item.getMsg());
                         startActivity(ListActivity.createIntent(getApplicationContext(), item.toString()));
                     }
@@ -256,6 +256,12 @@ public class GenreTopActivity extends BaseBackgroundActivity implements Animatio
                     @Override
                     public void onClick(View v){
                         Log.v(TAG, "デリート");
+                        MyDBHelper helper = new MyDBHelper(context);
+                        helper.deleteGenre(item.getPrimary());
+                        dataList = helper.selectGenre();
+                        adapter.notifyDataSetChanged();
+                        Toast.makeText(context, "削除しました。", Toast.LENGTH_SHORT).show();
+
                     }
 
                 });

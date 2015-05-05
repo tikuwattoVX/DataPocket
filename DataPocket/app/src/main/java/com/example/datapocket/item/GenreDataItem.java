@@ -20,6 +20,8 @@ public class GenreDataItem {
 	  this.msg = msg;
       this.image = image;
 	}
+    public int getPrimary() {return primary; }
+
 	public String getTitle(){
 	  return title;
 	}
