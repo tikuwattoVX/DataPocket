@@ -17,9 +17,16 @@ import java.util.ArrayList;
 /*
 * 拡張済みデータベースヘルパークラス
 *   基本的にはインスタンス化->APIコールで処理を実行
-*   select 1API
-*   insert 1API
-*   delete 2API
+*   select 3API
+*   insert 3API
+*   delete 4API
+*   update 1API
+*   (+insert 1API)
+* [課題]
+* ・ジャンルテーブルとリストテーブルを繋ぐリストキーの受け渡し
+* ・リスト画面と詳細画面はリストテーブル共用
+*   リストキーとプライマリキーの管理(リストキーはString、プライマリキーはint)
+*
 */
 public class MyDBHelper extends SQLiteOpenHelper{
     private boolean FirstStart_flg = false;         //初回起動判定フラグ、最初はfalse(OFF)で初期化
@@ -36,7 +43,10 @@ public class MyDBHelper extends SQLiteOpenHelper{
      *   パラメータ      なし
      *   機能説明       ジャンル画面用テーブルデータ
      *   戻り値         リスト型 ジャンル画面用データ
-     *
+     *                  int プライマリキー
+     *                  String タイトル
+     *                  String 説明
+     *                  String リストキー
      ****************************************************************************/
     public List<GenreDataItem> selectGenre(){
         List<GenreDataItem> GenreList = new ArrayList<GenreDataItem>();
@@ -74,10 +84,12 @@ public class MyDBHelper extends SQLiteOpenHelper{
      *   メソッド名     select文 リスト表示メソッド
      *   パラメータ     String LISTKEY
      *   機能説明       ジャンル画面用テーブルデータ
-     *   戻り値         リスト型 ジャンル画面用データ
-     *
+     *   戻り値         リスト型 リスト画面用データ
+     *                  int プライマリキー
+     *                  String ふりがな
+     *                  String タイトル
      ****************************************************************************/
-    public List<ListDataItem> selectList(String LISTKEY){
+    public List<ListDataItem> selectList(String sListkey){
         List<ListDataItem> ListList = new ArrayList<ListDataItem>();
         SQLiteDatabase db;
         db = getReadableDatabase();
@@ -90,9 +102,9 @@ public class MyDBHelper extends SQLiteOpenHelper{
         //buf.append("  ,"+Key.Columns_D4); 画像の仕様未確定
         buf.append(" FROM "+Key.ListTable);
         buf.append(" WHERE "+Key.Columns_D1+" = ");
-        buf.append("\'"+LISTKEY+"\'");
+        buf.append("\'"+sListkey+"\'");
 
-        Log.v("check query:",buf.toString());
+        Log.v("check query:", buf.toString());
         try{
             Cursor cursor = db.rawQuery(buf.toString(), null);
             while (cursor.moveToNext()){
@@ -108,6 +120,50 @@ public class MyDBHelper extends SQLiteOpenHelper{
         }
         return ListList ;
     }
+
+    /****************************************************************************
+     *   メソッド名     select文 詳細画面表示メソッド
+     *   パラメータ     int primarykey
+     *   機能説明       ジャンル画面用テーブルデータ
+     *   戻り値         リスト型 詳細画面用データ
+     *                  String ふりがな
+     *                  String タイトル
+     *                  String 詳細内容
+     ****************************************************************************/
+    public List<DetailDataItem> selectDetail(int iPrimarykey){
+        List<DetailDataItem> DetailList = new ArrayList<DetailDataItem>();
+        SQLiteDatabase db;
+        db = getReadableDatabase();
+        //クエリ作成
+        StringBuilder buf = new StringBuilder();
+        buf.append("SELECT ");
+        //buf.append(Key.ListID);   //最下層の為プライマリキー保持の必要なし
+        buf.append(" ,"+Key.Columns_D2);
+        buf.append(" ,"+Key.Columns_D3);
+        //buf.append("  ,"+Key.Columns_D4); 画像の仕様未確定
+        buf.append(" ,"+Key.Columns_D5);
+        buf.append(" FROM "+Key.ListTable);
+        buf.append(" WHERE "+Key.ListID+" = ");
+        buf.append("\'"+iPrimarykey+"\'");
+
+
+        Log.v("check query:",buf.toString());
+        try{
+            Cursor cursor = db.rawQuery(buf.toString(), null);
+            while (cursor.moveToNext()){
+                DetailList.add(new DetailDataItem(
+                        cursor.getString(0),
+                        cursor.getString(1),
+                        cursor.getString(2)
+                ));
+            }
+            Log.v("check :","select文通過");
+        } finally{
+            db.close();
+        }
+        return DetailList ;
+    }
+
 
     /****************************************************************************
      *   メソッド名    insert文 ジャンル画面追加
@@ -140,6 +196,44 @@ public class MyDBHelper extends SQLiteOpenHelper{
             db.close();
         }
     }
+
+    /****************************************************************************
+     *   メソッド名    リストキー生成API
+     *   パラメータ    int Primarykey
+     *   機能説明      ・リストキーの生成("List"＋パラメータの値で生成)
+     *                 ・ジャンルテーブルのプライマリキーに対応したレコードに追加
+     *   戻り値        なし
+     ****************************************************************************/
+    public void createListkey(int iPrimarykey){
+        StringBuilder Listkey = new StringBuilder();
+        //Listキー生成
+        Listkey.append("List"+iPrimarykey);
+
+        SQLiteDatabase db;
+        db = getWritableDatabase();
+        //update
+        StringBuilder buf = new StringBuilder();
+        buf.append("UPDATE ");
+        buf.append(Key.GenreTable);
+        buf.append(" SET ");
+        buf.append(Key.Columns_G4);
+        buf.append("=");
+        buf.append("\'"+Listkey+"\'");
+        buf.append(" WHERE "+Key.GenreID+" = ");
+        buf.append("\'"+iPrimarykey+"\'");
+
+        Log.v("check query:",buf.toString());
+        try {
+            db.execSQL(buf.toString());
+            Log.v("check:","["+iPrimarykey+"]のレコードにリストキー追加");
+        } catch (SQLException e) {
+            Log.e("ERROR", e.toString());
+        } finally {
+            db.close();
+        }
+
+    }
+
 
     /****************************************************************************
      *   メソッド名    delete文 1レコード削除(ジャンル画面)
