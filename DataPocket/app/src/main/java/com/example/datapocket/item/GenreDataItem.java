@@ -9,31 +9,35 @@ import android.widget.ImageView;
  */
 public class GenreDataItem {
 
-    private int primary;    // primaryKey
-	private String title;   // GenreTitle
-	private String msg;     // GenreMessage
-	private String image;   // GenreImagePath
+    private int mPrimary;    // primaryKey
+	private String mTitle;   // GenreTitle
+	private String mMsg;     // GenreMessage
+	private String mImage;   // GenreImagePath
+    private String mListPrimary;// ListPrimary
 	  
-	public GenreDataItem(int primary, String title, String msg){
-      this.primary = primary;
-	  this.title = title;
-	  this.msg = msg;
-      this.image = image;
+	public GenreDataItem(int primary, String title, String msg, String listprimary){
+      this.mPrimary = primary;
+	  this.mTitle = title;
+	  this.mMsg = msg;
+      this.mListPrimary = listprimary;
+//      this.mImage = image;
 	}
-    public int getPrimary() {return primary; }
+    public int getPrimary() {return mPrimary; }
 
 	public String getTitle(){
-	  return title;
+	  return mTitle;
 	}
 	  
 	public String getMsg(){
-	  return msg;
+	  return mMsg;
 	}
 
-    public String getImage() { return image; }
+    public String getImage() { return mImage; }
+
+    public String getmListPrimary() { return mListPrimary; }
 
 	public String toString(){
-	  return "key_" + primary; }
+	  return "key_" + mListPrimary; }
 }
 
 

@@ -34,7 +34,7 @@ public class ListActivity extends BaseBackgroundActivity {
     static final String TAG = "ListViewTest";
 
     private ListView mListView;
-    private String mGid; // TODO getIntentで取得したGIDを保持する為の変数
+    private String mListPrimary; // TODO getIntentで取得したGIDを保持する為の変数
     private DeletePagerAdapter deleteAdapter;
 
     static List<ListDataItem> dataList = new ArrayList<ListDataItem>();
@@ -49,10 +49,10 @@ public class ListActivity extends BaseBackgroundActivity {
         // TODO getIntent処理
         Intent intent = getIntent();
         if(intent != null) {
-            mGid = intent.getStringExtra(Key.GENRE_PRIMARY);
+            mListPrimary = intent.getStringExtra(Key.GENRE_PRIMARY);
         }
-        Log.v(TAG, mGid + "取得しました。");
-        String[] key = mGid.split("_", -1);
+        Log.v(TAG, mListPrimary + "取得しました。");
+        String[] key = mListPrimary.split("_", -1);
         int primary = Integer.parseInt(key[1]);
         Log.v(TAG, primary + "です");
 
