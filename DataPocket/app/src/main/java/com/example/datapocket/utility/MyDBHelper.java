@@ -36,6 +36,7 @@ public class MyDBHelper extends SQLiteOpenHelper{
      *   パラメータ      なし
      *   機能説明       ジャンル画面用テーブルデータ
      *   戻り値         リスト型 ジャンル画面用データ
+     *
      ****************************************************************************/
     public List<GenreDataItem> selectGenre(){
         List<GenreDataItem> GenreList = new ArrayList<GenreDataItem>();
@@ -48,6 +49,7 @@ public class MyDBHelper extends SQLiteOpenHelper{
         buf.append(" ,"+Key.Columns_G1);
         //buf.append("  ,"+Key.Columns_G2); 画像の仕様未確定
         buf.append(" ,"+Key.Columns_G3);
+        buf.append(" ,"+Key.Columns_G4);
         buf.append(" FROM "+Key.GenreTable);
 
         Log.v("check query:",buf.toString());
@@ -57,7 +59,8 @@ public class MyDBHelper extends SQLiteOpenHelper{
                 GenreList.add(new GenreDataItem(
                         cursor.getInt(0),
                         cursor.getString(1),
-                        cursor.getString(2)
+                        cursor.getString(2),
+                        cursor.getString(3)
                 ));
             }
             Log.v("check :","select文通過");
@@ -69,15 +72,15 @@ public class MyDBHelper extends SQLiteOpenHelper{
 
     /****************************************************************************
      *   メソッド名     select文 リスト表示メソッド
-     *   パラメータ     int primarykey
+     *   パラメータ     String LISTKEY
      *   機能説明       ジャンル画面用テーブルデータ
      *   戻り値         リスト型 ジャンル画面用データ
+     *
      ****************************************************************************/
-    public List<ListDataItem> selectList(){
+    public List<ListDataItem> selectList(String LISTKEY){
         List<ListDataItem> ListList = new ArrayList<ListDataItem>();
         SQLiteDatabase db;
         db = getReadableDatabase();
-        //クエリ見直し
         //クエリ作成
         StringBuilder buf = new StringBuilder();
         buf.append("SELECT ");
@@ -86,6 +89,8 @@ public class MyDBHelper extends SQLiteOpenHelper{
         buf.append(" ,"+Key.Columns_D3);
         //buf.append("  ,"+Key.Columns_D4); 画像の仕様未確定
         buf.append(" FROM "+Key.ListTable);
+        buf.append(" WHERE "+Key.Columns_D1+" = ");
+        buf.append("\'"+LISTKEY+"\'");
 
         Log.v("check query:",buf.toString());
         try{
@@ -290,7 +295,8 @@ public class MyDBHelper extends SQLiteOpenHelper{
             buf.append(Key.Columns_G1+","+Key.Columns_G3+","+Key.Columns_G4);
             buf.append(") ");
             buf.append("VALUES(");
-            buf.append("'魚料理', '魚料理についてのまとめ','LIST1");//初回サンプルなので1で決めうち
+            buf.append(" '魚料理', '魚料理についてのまとめ'");
+            buf.append(",'LIST1' ");    //初回サンプルなので1で決めうち
             buf.append(")");
             Log.v("check query:",buf.toString());
             try {
@@ -310,8 +316,8 @@ public class MyDBHelper extends SQLiteOpenHelper{
             buf2.append(Key.Columns_D2+","+Key.Columns_D3+","+Key.Columns_D5);
             buf2.append(") ");
             buf2.append("VALUES(");
-            buf2.append("'List1',");  //初回サンプルなので1で決めうち
-            buf2.append("'まぐろ', '鮪','鮪とは、魚である。魚は体にいいのである。'");
+            buf2.append(" 'List1',");  //初回サンプルなので1で決めうち
+            buf2.append("'まぐろ', '鮪','鮪とは、魚である。魚は体にいいのである。' ");
             buf2.append(")");
             Log.v("check query:",buf2.toString());
             try {
