@@ -10,35 +10,35 @@ public class Key {
     public static final String GENRE_START_FIRST = "genreStartFirst";
     public static final String GENRE_TITLE = "genreTitle";
     public static final String GENRE_DESCRIPTION = "genreDescription";
-    public static final String GENRE_PRIMARY = "genrePrimary";
 
     // ListActivity
+    public static final String LIST_TITLE = "listTitle";
+    public static final String LIST_DESCRIPTION = "listDescription";
+    public static final String LIST_IMAGE = "listImage";
+    // ListActivity
     public static final String LIST_START_FIRST = "listStartFirst";
-    public static final String LIST_PRIMARY = "listPrimary";
 
     // AddGenreActivity
     public static final String GENRE_IMAGE = "genreImage";
 
-    public static final String LIST_TITLE = "listTitle";
-    public static final String LIST_DESCRIPTION = "listDescription";
-    public static final String LIST_IMAGE = "listImage";
-
-
-    //テーブル名
-    public static final String TABLE_NAME = "DataPocket";
-    //プライマリキー
-    public static final String GenreID = "gID";
-    public static final String Columns_DPID = "DPID";
-
+/**********************以下はデータベース(テーブル)定義に使用**********************/
     //ジャンル画面
-    public static final String Columns_G1 = "gTitle";
-    public static final String Columns_G2 = "gPicture";
-    public static final String Columns_G3 = "gDescription";
-    public static final String Columns_G4 = "gListKey";//リストテーブルへのキー
+    public static final String GenreTable = "GenreTable";   //テーブル名
+    public static final String GenreID = "gID";             //プライマリキー
+    public static final String Columns_G1 = "gTitle";       //タイトル
+    public static final String Columns_G2 = "gPicture";     //画像表示用 -> 未使用
+    public static final String Columns_G3 = "gDescription"; //内容
+    public static final String Columns_G4 = "gListKey";     //リストテーブルへのキー(ジャンルとリスト&詳細へのキー)
+    //ListKeyのカラムに入る値はジャンルテーブルとリスト&詳細テーブルを繋ぐキーになる
+
     //リスト & 詳細画面
-    public static final String ListID = "dListKey";
-    public static final String Columns_D1 = "dHurigana";
-    public static final String Columns_D2 = "dTittle";
-    public static final String Columns_D3 = "dPicture";
-    public static final String Columns_D4 = "dDescription";
+    public static final String ListTable  = "ListTable";    //テーブル名
+    public static final String ListID     = "dID";          //プライマリキー(主に削除に使用)
+    public static final String Columns_D1 = "dListKey";     //リストテーブルのキー
+    public static final String Columns_D2 = "dHurigana";    //ふりがな
+    public static final String Columns_D3 = "dTittle";      //タイトル
+    public static final String Columns_D4 = "dPicture";     //画像表示用 -> 未使用
+    public static final String Columns_D5 = "dDescription"; //内容
+/************************************************************************************/
+
 }
