@@ -59,41 +59,45 @@ category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:26:17
 	android:name
 		ADDED from AndroidManifest.xml:26:27
-activity#com.example.datapocket.activity.ListActivity
+activity#com.example.datapocket.activity.CustomAllFragmentActivity
 ADDED from AndroidManifest.xml:29:9
 	android:name
 		ADDED from AndroidManifest.xml:29:19
-activity#com.example.datapocket.activity.AddGenreActivity
+activity#com.example.datapocket.activity.ListActivity
 ADDED from AndroidManifest.xml:30:9
 	android:name
 		ADDED from AndroidManifest.xml:30:19
-activity#com.example.datapocket.activity.AddListActivity
+activity#com.example.datapocket.activity.AddGenreActivity
 ADDED from AndroidManifest.xml:31:9
 	android:name
 		ADDED from AndroidManifest.xml:31:19
-activity#com.example.datapocket.activity.CustomAllActivity
+activity#com.example.datapocket.activity.AddListActivity
 ADDED from AndroidManifest.xml:32:9
 	android:name
 		ADDED from AndroidManifest.xml:32:19
-intent-filter#android.intent.action.VIEW+android.intent.category.DEFAULT
-ADDED from AndroidManifest.xml:33:13
-action#android.intent.action.VIEW
-ADDED from AndroidManifest.xml:34:17
+activity#com.example.datapocket.activity.CustomAllActivity
+ADDED from AndroidManifest.xml:33:9
 	android:name
-		ADDED from AndroidManifest.xml:34:25
-category#android.intent.category.DEFAULT
+		ADDED from AndroidManifest.xml:33:19
+intent-filter#android.intent.action.VIEW+android.intent.category.DEFAULT
+ADDED from AndroidManifest.xml:34:13
+action#android.intent.action.VIEW
 ADDED from AndroidManifest.xml:35:17
 	android:name
-		ADDED from AndroidManifest.xml:35:27
-data
+		ADDED from AndroidManifest.xml:35:25
+category#android.intent.category.DEFAULT
 ADDED from AndroidManifest.xml:36:17
-	android:mimeType
-		ADDED from AndroidManifest.xml:36:23
-activity#com.example.datapocket.activity.DetailActivity
-ADDED from AndroidManifest.xml:39:9
 	android:name
-		ADDED from AndroidManifest.xml:39:19
-activity#com.example.datapocket.activity.CustomListActivity
+		ADDED from AndroidManifest.xml:36:27
+data
+ADDED from AndroidManifest.xml:37:17
+	android:mimeType
+		ADDED from AndroidManifest.xml:37:23
+activity#com.example.datapocket.activity.DetailActivity
 ADDED from AndroidManifest.xml:40:9
 	android:name
 		ADDED from AndroidManifest.xml:40:19
+activity#com.example.datapocket.activity.CustomListActivity
+ADDED from AndroidManifest.xml:41:9
+	android:name
+		ADDED from AndroidManifest.xml:41:19

@@ -114,7 +114,7 @@ public class ListActivity extends BaseBackgroundActivity {
 		      startActivityForResult(intent, Const.REQUEST_CODE);
 		  	  return true;
 		  case R.id.all_custom:	// 編集ボタン
-			  intent.setClassName(getApplicationContext(), Const.CUSTOM_ALL_ACTIVITY);
+			  intent.setClassName(getApplicationContext(), "com.example.datapocket.activity.CustomAllFragmentActivity");
 			  startActivity(intent);
 			  return true;
 		  default:

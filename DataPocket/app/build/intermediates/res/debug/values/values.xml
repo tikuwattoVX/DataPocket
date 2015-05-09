@@ -153,6 +153,8 @@
     <!-- From: file:/Users/masakisakamoto/AndroidStudioProjects/DataPocket/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="genre_title_size">26dp</dimen>
+    <dimen name="size20dp">20dp</dimen>
+    <dimen name="size26dp">26dp</dimen>
     <!-- From: file:/Users/masakisakamoto/AndroidStudioProjects/DataPocket/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <item name="action_bar_activity_content" type="id"/>

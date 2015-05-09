@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:background="@drawable/custom_window">
+
+        <TextView
+            style="@style/custom_all_title_text"
+            android:id="@+id/customGenreTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/custom_all_genre_title"/>
+
+        <View
+            android:id="@+id/dividerTop"
+            android:layout_below="@+id/customGenreTitle"
+            style="@style/divider"/>
+
+        <ListView
+            android:id="@+id/customGenreListview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/dividerTop">
+
+        </ListView>
+    </RelativeLayout>
+
+</RelativeLayout>
+<!-- From: file:/Users/masakisakamoto/AndroidStudioProjects/DataPocket/app/src/main/res/layout/fragment_custom_genre.xml -->

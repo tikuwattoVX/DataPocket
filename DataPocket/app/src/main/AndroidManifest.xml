@@ -26,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".CustomAllFragmentActivity"></activity>
         <activity android:name=".ListActivity"></activity>
         <activity android:name=".AddGenreActivity"></activity>
         <activity android:name=".AddListActivity"></activity>

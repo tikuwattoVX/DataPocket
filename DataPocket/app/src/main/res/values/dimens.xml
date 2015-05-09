@@ -6,6 +6,8 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     
     <dimen name="default_size">16dp</dimen>
+    <dimen name="size20dp">20dp</dimen>
+    <dimen name="size26dp">26dp</dimen>
 
     <dimen name="genre_title_size">26dp</dimen>
 

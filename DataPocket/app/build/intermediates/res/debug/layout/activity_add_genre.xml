@@ -39,33 +39,17 @@
                 android:text="@string/title"
                 android:textSize="@dimen/default_size"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
             <!-- タイトル入力部 -->
             <EditText
                 android:id="@+id/genreTitleAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="5dp"
                 android:hint="@string/genre_setting_title_hint">
 
             </EditText>
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@android:drawable/ic_menu_edit"
-                    android:background="@drawable/edit_button"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="20dp"/>
-
-            </LinearLayout>
 
             <View style="@style/divider"/>
 

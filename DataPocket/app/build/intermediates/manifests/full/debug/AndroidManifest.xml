@@ -26,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.datapocket.activity.CustomAllFragmentActivity" />
         <activity android:name="com.example.datapocket.activity.ListActivity" />
         <activity android:name="com.example.datapocket.activity.AddGenreActivity" />
         <activity android:name="com.example.datapocket.activity.AddListActivity" />
