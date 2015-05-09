@@ -10,6 +10,7 @@ public class Key {
     public static final String GENRE_START_FIRST = "genreStartFirst";
     public static final String GENRE_TITLE = "genreTitle";
     public static final String GENRE_DESCRIPTION = "genreDescription";
+    public static final String GENRE_PRIMARY = "genrePrimary";
 
     // ListActivity
     public static final String LIST_TITLE = "listTitle";
@@ -17,11 +18,18 @@ public class Key {
     public static final String LIST_IMAGE = "listImage";
     // ListActivity
     public static final String LIST_START_FIRST = "listStartFirst";
+    public static final String LIST_PRIMARY = "listPrimary";
 
     // AddGenreActivity
     public static final String GENRE_IMAGE = "genreImage";
 
-/**********************以下はデータベース(テーブル)定義に使用**********************/
+    //テーブル名
+    public static final String TABLE_NAME = "DataPocket";
+    //プライマリキー
+    public static final String Columns_DPID = "DPID";
+
+
+    /**********************以下はデータベース(テーブル)定義に使用**********************/
     //ジャンル画面
     public static final String GenreTable = "GenreTable";   //テーブル名
     public static final String GenreID = "gID";             //プライマリキー
