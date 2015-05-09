@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DataPocket.iml" filepath="$PROJECT_DIR$/DataPocket.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/DataPocket_clone.iml" filepath="$PROJECT_DIR$/.idea/DataPocket_clone.iml" />
     </modules>
   </component>
 </project>

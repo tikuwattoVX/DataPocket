@@ -43,12 +43,12 @@ public class MyDBHelper extends SQLiteOpenHelper{
         db = getReadableDatabase();
         //クエリ作成
         StringBuilder buf = new StringBuilder();
-        buf.append(" SELECT");
-        buf.append(" "+Key.GenreID);
+        buf.append("SELECT ");
+        buf.append(Key.GenreID);
         buf.append(" ,"+Key.Columns_G1);
         //buf.append("  ,"+Key.Columns_G2); 画像の仕様未確定
         buf.append(" ,"+Key.Columns_G3);
-        buf.append(" FROM "+Key.TABLE_NAME);
+        buf.append(" FROM "+Key.GenreTable);
 
         Log.v("check query:",buf.toString());
         try{
@@ -77,14 +77,15 @@ public class MyDBHelper extends SQLiteOpenHelper{
         List<ListDataItem> ListList = new ArrayList<ListDataItem>();
         SQLiteDatabase db;
         db = getReadableDatabase();
+        //クエリ見直し
         //クエリ作成
         StringBuilder buf = new StringBuilder();
-        buf.append(" SELECT");
-        buf.append(" "+Key.GenreID);
-        buf.append(" ,"+Key.Columns_D1);
-        //buf.append("  ,"+Key.Columns_D2); 画像の仕様未確定
+        buf.append("SELECT ");
+        buf.append(Key.ListID);
+        buf.append(" ,"+Key.Columns_D2);
         buf.append(" ,"+Key.Columns_D3);
-        buf.append(" FROM "+Key.TABLE_NAME);
+        //buf.append("  ,"+Key.Columns_D4); 画像の仕様未確定
+        buf.append(" FROM "+Key.ListTable);
 
         Log.v("check query:",buf.toString());
         try{
@@ -107,7 +108,7 @@ public class MyDBHelper extends SQLiteOpenHelper{
      *   メソッド名    insert文 ジャンル画面追加
      *   パラメータ    String タイトル
      *                 String 内容
-     *   機能説明     引数の値をテーブルに追加
+     *   機能説明     引数の値をジャンル画面テーブルに追加
      *   戻り値       なし
      ****************************************************************************/
     public void insertGenre(String setColmns_1, /*String setColmns_2,*/ String setColmns_3){
@@ -116,19 +117,18 @@ public class MyDBHelper extends SQLiteOpenHelper{
         //insert
         StringBuilder buf = new StringBuilder();
         buf.append("INSERT INTO ");
-        buf.append(Key.TABLE_NAME);
+        buf.append(Key.GenreTable);
         buf.append("(");
         buf.append(Key.Columns_G1+","+Key.Columns_G3);
         buf.append(")");
-        buf.append(" VALUES");
-        buf.append("(");
+        buf.append(" VALUES(");
         buf.append("\'"+setColmns_1+"\',\'"+setColmns_3+"\'");
         buf.append(")");
 
         Log.v("check query:",buf.toString());
         try {
             db.execSQL(buf.toString());
-            Log.v("check:","insert通過");
+            Log.v("check:","insertジャンル画面通過");
         } catch (SQLException e) {
             Log.e("ERROR", e.toString());
         } finally {
@@ -139,18 +139,19 @@ public class MyDBHelper extends SQLiteOpenHelper{
     /****************************************************************************
      *   メソッド名    delete文 1レコード削除(ジャンル画面)
      *   パラメータ    int primarykey
-     *   機能説明     引数の値(プライマリキー)に対応するレコードの削除
+     *   機能説明     引数の値(プライマリキー)に対応する
+     *                ジャンル画面テーブルのレコード削除
      *   戻り値       なし
      ****************************************************************************/
-    public void deleteGenre(int primarykey) {
+    public void deleteGenre(int Primarykey) {
         SQLiteDatabase db;
         db = getWritableDatabase();
         //delete
         StringBuilder buf = new StringBuilder();
         buf.append("DELETE FROM ");
-        buf.append(Key.TABLE_NAME);
+        buf.append(Key.GenreTable);
         buf.append(" WHERE ");
-        buf.append(Key.GenreID+"=\'"+primarykey+"\'");
+        buf.append(Key.GenreID+"=\'"+Primarykey+"\'");
 
         Log.v("check query:",buf.toString());
         try {
@@ -166,7 +167,7 @@ public class MyDBHelper extends SQLiteOpenHelper{
     /****************************************************************************
      *   メソッド名    delete文 テーブル削除
      *   パラメータ    void
-     *   機能説明     ・テーブルの削除(全レコードの削除)
+     *   機能説明     ・2テーブルの削除(全レコードの削除)
      *                ・初回起動APIコール
      *   戻り値       なし
      ****************************************************************************/
@@ -176,7 +177,7 @@ public class MyDBHelper extends SQLiteOpenHelper{
         //delete
         StringBuilder buf = new StringBuilder();
         buf.append("DELETE FROM ");
-        buf.append(Key.TABLE_NAME);
+        buf.append(Key.GenreTable);
 
         Log.v("check query:",buf.toString());
         try {
@@ -185,10 +186,26 @@ public class MyDBHelper extends SQLiteOpenHelper{
         } catch (SQLException e) {
             Log.e("ERROR", e.toString());
         } finally {
+            //db.close();
+        }
+
+        //delete
+        StringBuilder buf2 = new StringBuilder();
+        buf2.append("DELETE FROM ");
+        buf2.append(Key.ListTable);
+
+        Log.v("check query:",buf2.toString());
+        try {
+            db.execSQL(buf2.toString());
+            Log.v("check:","delete通過");
+        } catch (SQLException e) {
+            Log.e("ERROR", e.toString());
+        } finally {
             db.close();
         }
+
         //フラグON -> 直接初回起動確認APIをコールする処理に変更
-        //FirstStart_flg = true; //初回起動フラグを立てる
+        //FirstStart_flg = true; //初回起動フラグを立てる -> onCreate内部処理で実行の為コメントアウト
         isStartFirst();
     }
 
@@ -200,37 +217,56 @@ public class MyDBHelper extends SQLiteOpenHelper{
 
     /****************************************************************************
      *   メソッド名     初回テーブル作成メソッド
-     *   機能説明       テーブルがない状態で実行した場合のみ呼び出されるメソッド
-     *                  基本的には初回起動時のみ呼び出される
+     *   機能説明       ・テーブルがない状態で実行した場合のみ呼び出されるメソッド
+     *                  ・基本的には初回起動時のみ呼び出される
+     *                  ・ジャンル画面テーブル と リスト&詳細画面テーブル を作成
      *   戻り値         なし
      ****************************************************************************/
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // TODO Auto-generated method stub
+        /*****ジャンル画面用テーブル作成クエリ****/
         //クエリ作成
-        StringBuilder buf = new StringBuilder();
-        buf.append("create table "+ Key.TABLE_NAME);
-        buf.append("(");
-        buf.append(Key.GenreID+" integer primary key autoincrement");
+        StringBuilder buf1 = new StringBuilder();
+        buf1.append("CREATE TABLE "+ Key.GenreTable);
+        buf1.append("(");
+        buf1.append(Key.GenreID+" integer primary key autoincrement");
         //ジャンル画面カラム
-        buf.append(" ,"+Key.Columns_G1+" text");
-//      buf.append(" ,"+Key.Columns_G2+" ");       //画像の仕様未確定
-        buf.append(" ,"+Key.Columns_G3+" text");
-        //詳細画面カラム
-        buf.append(" ,"+Key.Columns_D1+" text");
-        buf.append(" ,"+Key.Columns_D2+" text");
-//      buf.append(" ,"+Key.Columns_D3+" ");        //画像の仕様未確定
-        buf.append(" ,"+Key.Columns_D4+" text");
-        buf.append(")");
-
-        Log.v("check query:",buf.toString());
-        //クエリ実行
+        buf1.append(" ,"+Key.Columns_G1+" text");
+//      buf1.append(" ,"+Key.Columns_G2+" ");       //画像の仕様未確定
+        buf1.append(" ,"+Key.Columns_G3+" text");
+        buf1.append(" ,"+Key.Columns_G4+" text");   //Listキー "List"+Key.GenreID(プライマリキー)
+        buf1.append(")");
+        Log.v("check query:",buf1.toString());
         try {
-            db.execSQL(buf.toString());
-            Log.v("check:","初回テーブル作成API通過");
+            //クエリ実行
+            db.execSQL(buf1.toString());
+            Log.v("check:","初回テーブル作成_ジャンル画面テーブル通過");
         } catch (SQLException e) {
             Log.e("ERROR", e.toString());
         }
+
+        /*****リスト&詳細画面用テーブル作成クエリ****/
+        //クエリ作成
+        StringBuilder buf2 = new StringBuilder();
+        buf2.append("CREATE TABLE "+ Key.ListTable);
+        buf2.append("(");
+        buf2.append(Key.ListID+" integer primary key autoincrement");
+        //リスト&詳細画面カラム
+        buf2.append(" ,"+Key.Columns_D1+" text");   //Listキー "List"+Key.GenreID(プライマリキー)
+        buf2.append(" ,"+Key.Columns_D2+" text");
+        buf2.append(" ,"+Key.Columns_D3+" text");
+        //buf.append(" ,"+Key.Columns_D4+"");  //画像の仕様未確定
+        buf2.append(" ,"+Key.Columns_D5+" text");
+        buf2.append(")");
+        Log.v("check query:",buf2.toString());
+        try {
+            //クエリ実行
+            db.execSQL(buf2.toString());
+            Log.v("check:","初回テーブル作成_ジャンル画面テーブル通過");
+        } catch (SQLException e) {
+            Log.e("ERROR", e.toString());
+        }
+
         FirstStart_flg = true; //初回起動フラグを立てる
     }
 
@@ -243,40 +279,50 @@ public class MyDBHelper extends SQLiteOpenHelper{
      ****************************************************************************/
     public void isStartFirst(){
         SQLiteDatabase db;
-        //テーブルの有無確認 無ければフラグがONになる
-        db = getWritableDatabase();
+        db = getWritableDatabase();  //テーブルの有無確認 無ければフラグがONになる
         if(FirstStart_flg){
-            //初回起動の場合のみサンプルレコード作成処理
-            //insert
+            //ジャンル画面テーブル
             StringBuilder buf = new StringBuilder();
             buf.append("INSERT INTO ");
-            buf.append(Key.TABLE_NAME);
+            buf.append(Key.GenreTable);
             buf.append("(");
-            //ジャンル画面(タイトル、説明)
-            buf.append(Key.Columns_G1+","+Key.Columns_G3);
-            buf.append(",");
-            //詳細画面(タイトル、振り仮名、説明)
-            buf.append(Key.Columns_D1+","+Key.Columns_D2+","+Key.Columns_D4);
+            //プライマリキー Key.GenreID(integer primary key autoincrement)
+            buf.append(Key.Columns_G1+","+Key.Columns_G3+","+Key.Columns_G4);
+            buf.append(") ");
+            buf.append("VALUES(");
+            buf.append("'魚料理', '魚料理についてのまとめ','LIST1");//初回サンプルなので1で決めうち
             buf.append(")");
-            buf.append(" VALUES");
-            buf.append("(");
-            //ジャンル画面用サンプルデータ
-            buf.append("'魚料理', '魚料理とは、魚である'");
-            buf.append(",");
-            //詳細画面用サンプルデータ
-            buf.append("'鰡','ぼら','鰡とは、魚の一種である。呼び方は「ぼら」'");
-            buf.append(")");
-
             Log.v("check query:",buf.toString());
             try {
                 db.execSQL(buf.toString());
-                Log.v("check:","初回サンプル用insert通過");
+                Log.v("check:","[ジャンル]初回サンプル用insert通過");
+            } catch (SQLException e) {
+                Log.e("ERROR", e.toString());
+            }
+
+            //リスト&詳細画面テーブル
+            StringBuilder buf2 = new StringBuilder();
+            buf2.append("INSERT INTO ");
+            buf2.append(Key.ListTable);
+            buf2.append("(");
+            //プライマリキー Key.ListID(integer primary key autoincrement)
+            buf2.append(Key.Columns_D1+",");    //Listキー
+            buf2.append(Key.Columns_D2+","+Key.Columns_D3+","+Key.Columns_D5);
+            buf2.append(") ");
+            buf2.append("VALUES(");
+            buf2.append("'List1',");  //初回サンプルなので1で決めうち
+            buf2.append("'まぐろ', '鮪','鮪とは、魚である。魚は体にいいのである。'");
+            buf2.append(")");
+            Log.v("check query:",buf2.toString());
+            try {
+                db.execSQL(buf2.toString());
+                Log.v("check:","[リスト&詳細]初回サンプル用insert通過");
             } catch (SQLException e) {
                 Log.e("ERROR", e.toString());
             } finally {
                 db.close();
             }
-            FirstStart_flg = false; //作成後はフラグを折る
+            FirstStart_flg = false; //初回サンプル作成後はフラグを折る
         }
     }
 
